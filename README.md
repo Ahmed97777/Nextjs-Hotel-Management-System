@@ -1,3 +1,3 @@
-# Introducing a stunning new Next.js dashboard.
+# Introducing a stunning new Next.js project Dashboard.
 
 ### To be updated.
