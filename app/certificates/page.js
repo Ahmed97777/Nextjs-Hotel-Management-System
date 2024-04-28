@@ -1,7 +1,7 @@
 import React from "react";
 
 function page() {
-  return <div>this is certificates page</div>;
+  return <div>This is the Certificates page</div>;
 }
 
 export default page;

@@ -1,10 +1,12 @@
 import React from "react";
+
 import SidebarListItem from "./SidebarListItem";
 
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faDiagramProject } from "@fortawesome/free-solid-svg-icons";
 import { faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 function Sidebar() {
   return (
@@ -12,22 +14,22 @@ function Sidebar() {
       <h3
         className="mb-6 text-green-800 font-extrabold text-lg text-center" /*Logo Name*/
       >
-        Next-JP-D
+        <Link href={"/"}>Next-JP-D</Link>
       </h3>
 
       <ul className="space-y-6">
-        <SidebarListItem linkTo="/" icon={faChartBar} name="JP-D" />
+        <SidebarListItem linkTo="/" icon={faChartBar} name="Dashboard" />
 
-        <SidebarListItem linkTo="/pages/profile" icon={faUser} name="Profile" />
+        <SidebarListItem linkTo="/profile" icon={faUser} name="Profile" />
 
         <SidebarListItem
-          linkTo="/pages/projects"
+          linkTo="/projects"
           icon={faDiagramProject}
           name="Projects"
         />
 
         <SidebarListItem
-          linkTo="/pages/certificates"
+          linkTo="/certificates"
           icon={faBuildingColumns}
           name="Certificates"
         />

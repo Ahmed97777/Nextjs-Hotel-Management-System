@@ -1,7 +1,7 @@
 import React from "react";
 
 function page() {
-  return <div>this is projects page</div>;
+  return <div>This is the User profile page</div>;
 }
 
 export default page;
