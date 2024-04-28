@@ -18,18 +18,18 @@ function Sidebar() {
       <ul className="space-y-6">
         <SidebarListItem linkTo="/" icon={faChartBar} name="JP-D" />
 
-        <SidebarListItem linkTo="/profile" icon={faUser} name="Profile" />
+        <SidebarListItem linkTo="/pages/profile" icon={faUser} name="Profile" />
 
         <SidebarListItem
-          linkTo="/projects"
+          linkTo="/pages/projects"
           icon={faDiagramProject}
           name="Projects"
         />
 
         <SidebarListItem
-          linkTo="/tAndc"
+          linkTo="/pages/certificates"
           icon={faBuildingColumns}
-          name="T &amp; C"
+          name="Certificates"
         />
       </ul>
     </div>
