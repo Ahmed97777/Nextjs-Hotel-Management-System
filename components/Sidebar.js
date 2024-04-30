@@ -3,15 +3,27 @@ import Link from "next/link";
 
 import SidebarListItem from "./SidebarListItem";
 
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { faUsers } from "@fortawesome/free-solid-svg-icons";
-import { faTableColumns } from "@fortawesome/free-solid-svg-icons";
-import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
-import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
-import { faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouse,
+  faUsers,
+  faTableColumns,
+  faBookOpen,
+  faGear,
+  faAddressCard,
+  faDoorOpen,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Sidebar() {
+  const sidebarData = [
+    { linkTo: "/dashboard", icon: faTableColumns, name: "Dashboard" },
+    { linkTo: "/bookings", icon: faBookOpen, name: "Bookings" },
+    { linkTo: "/cabins", icon: faHouse, name: "Cabins" },
+    { linkTo: "/users", icon: faUsers, name: "Users" },
+    { linkTo: "/settings", icon: faGear, name: "Settings" },
+    { linkTo: "/account", icon: faAddressCard, name: "Account" },
+    { linkTo: "/login", icon: faDoorOpen, name: "Login" },
+  ];
+
   return (
     <div className="bg-white p-5 relative" /*Sidebar*/>
       <h3
@@ -21,27 +33,14 @@ function Sidebar() {
       </h3>
 
       <ul className="space-y-6">
-        <SidebarListItem
-          linkTo="/dashboard"
-          icon={faTableColumns}
-          name="Dashboard"
-        />
-
-        <SidebarListItem linkTo="/bookings" icon={faBookOpen} name="Bookings" />
-
-        <SidebarListItem linkTo="/cabins" icon={faHouse} name="Cabins" />
-
-        <SidebarListItem linkTo="/users" icon={faUsers} name="Users" />
-
-        <SidebarListItem linkTo="/settings" icon={faGear} name="Settings" />
-
-        <SidebarListItem
-          linkTo="/account"
-          icon={faAddressCard}
-          name="Account"
-        />
-
-        <SidebarListItem linkTo="/login" icon={faDoorOpen} name="Login" />
+        {sidebarData.map((itemData) => (
+          <SidebarListItem
+            key={itemData.name}
+            linkTo={itemData.linkTo}
+            icon={itemData.icon}
+            name={itemData.name}
+          />
+        ))}
       </ul>
     </div>
   );
