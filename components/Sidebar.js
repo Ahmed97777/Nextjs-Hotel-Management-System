@@ -15,9 +15,9 @@ function Sidebar() {
   return (
     <div className="bg-white p-5 relative" /*Sidebar*/>
       <h3
-        className="mb-6 text-green-800 font-extrabold text-lg text-center" /*Logo Name*/
+        className="mb-6 text-green-800 font-extrabold text-sm sm:text-lg text-center" /*Logo Name*/
       >
-        <Link href={"/"}>Next-JP-D</Link>
+        <Link href={"/"}>Next Hotel</Link>
       </h3>
 
       <ul className="space-y-6">
