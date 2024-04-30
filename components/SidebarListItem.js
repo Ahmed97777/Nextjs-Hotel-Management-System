@@ -1,13 +1,25 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+"use client";
+
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function SidebarListItem({ linkTo, icon, name }) {
+  const pathName = usePathname();
+  // console.log("===============", pathName);
+
+  const isLinkActive = pathName.startsWith(linkTo);
+  // console.log("dddddd", isLinkActive);
+
   return (
     <li className="border-b border-gray-300 pb-2">
       <Link
         href={linkTo}
-        className="flex justify-center sm:justify-normal items-center text-gray-400 focus:text-green-600"
+        className={`flex justify-center sm:justify-normal items-center ${
+          isLinkActive ? "text-green-600" : "text-gray-400"
+        }  `}
       >
         <span className="mr-2">
           <FontAwesomeIcon className="size-5" icon={icon} />
