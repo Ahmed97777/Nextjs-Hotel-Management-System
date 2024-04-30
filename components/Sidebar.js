@@ -17,11 +17,15 @@ function Sidebar() {
       <h3
         className="mb-6 text-green-800 font-extrabold text-sm sm:text-lg text-center" /*Logo Name*/
       >
-        <Link href={"/"}>Next Hotel</Link>
+        <Link href={"/dashboard"}>Next Hotel</Link>
       </h3>
 
       <ul className="space-y-6">
-        <SidebarListItem linkTo="/" icon={faTableColumns} name="Dashboard" />
+        <SidebarListItem
+          linkTo="/dashboard"
+          icon={faTableColumns}
+          name="Dashboard"
+        />
 
         <SidebarListItem linkTo="/bookings" icon={faBookOpen} name="Bookings" />
 
