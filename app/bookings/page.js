@@ -1,7 +1,7 @@
 import React from "react";
 
 function page() {
-  return <div>This is the User profile page</div>;
+  return <h1>Bookings</h1>;
 }
 
 export default page;

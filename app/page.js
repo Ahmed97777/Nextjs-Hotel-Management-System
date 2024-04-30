@@ -1,10 +1,5 @@
-import Header from "@/components/Header";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <>
-      <Header />
-      <h1>This is the Home dashboard content ...........</h1>
-    </>
-  );
+  redirect("/dashboard"); // Navigate to the dashboard page
 }
