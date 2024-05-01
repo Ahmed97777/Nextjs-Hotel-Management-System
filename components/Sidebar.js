@@ -25,14 +25,14 @@ function Sidebar() {
   ];
 
   return (
-    <div className="bg-white p-5 relative" /*Sidebar*/>
+    <div className="bg-white row-span-full p-5 relative" /*Sidebar*/>
       <h3
         className="mb-6 text-green-800 font-extrabold text-sm sm:text-lg text-center" /*Logo Name*/
       >
         <Link href={"/dashboard"}>Next Hotel</Link>
       </h3>
 
-      <ul className="space-y-6">
+      <ul className="space-y-7">
         {sidebarData.map((itemData) => (
           <SidebarListItem
             key={itemData.name}

@@ -14,14 +14,14 @@ function SidebarListItem({ linkTo, icon, name }) {
   // console.log("dddddd", isLinkActive);
 
   return (
-    <li className="border-b border-gray-300 pb-2">
+    <li>
       <Link
         href={linkTo}
         className={`flex justify-center sm:justify-normal items-center ${
           isLinkActive ? "text-green-600" : "text-gray-400"
         }  `}
       >
-        <span className="mr-2">
+        <span className="sm:mr-2">
           <FontAwesomeIcon className="size-5" icon={icon} />
         </span>
         <span className="hidden sm:block">{name}</span>

@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,11 +16,16 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <main
-          className="flex min-h-screen bg-gray-100" /*main: contains Sidebar and Content*/
+          className="h-screen grid grid-cols-[6rem,1fr] sm:grid-cols-[10rem,1fr] grid-rows-[auto,1fr] bg-gray-400" /*main: contains Sidebar and Content*/
         >
+          <Header />
           <Sidebar />
 
-          <div className="" /*Content*/>{children}</div>
+          <div
+            className="bg-green-700 px-[4.8rem] pt-16 pb-[6.4rem]" /*Content*/
+          >
+            {children}
+          </div>
         </main>
       </body>
     </html>
