@@ -16,14 +16,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <main
-          className="h-screen grid grid-cols-[6rem,1fr] sm:grid-cols-[10rem,1fr] grid-rows-[auto,1fr] bg-gray-400" /*main: contains Sidebar and Content*/
+          className="h-screen grid grid-cols-[5rem,1fr] sm:grid-cols-[10rem,1fr] grid-rows-[auto,1fr] bg-gray-400" /*main: contains Header, Sidebar and Content*/
         >
           <Header />
           <Sidebar />
-
-          <div
-            className="bg-green-700 px-[4.8rem] pt-16 pb-[6.4rem]" /*Content*/
-          >
+          <div className="bg-gray-50 px-[4.8rem] pt-16 pb-[6.4rem]" /*Content*/>
             {children}
           </div>
         </main>
