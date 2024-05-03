@@ -11,9 +11,10 @@ export async function getCabins() {
       throw new Error("Cabins could not be loaded");
     }
 
-    console.log("Cabins request succeded");
+    console.log("Cabins request succeeded");
     return cabinsData;
   } catch (error) {
-    throw new Error(error.message);
+    console.log(error.message);
+    return error.message;
   }
 }
