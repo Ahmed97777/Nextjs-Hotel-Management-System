@@ -3,7 +3,7 @@ import supabase from "./supabase";
 export async function getCabins() {
   try {
     const { data: cabinsData, error } = await supabase
-      .from("cabinjjs")
+      .from("cabins")
       .select("*");
 
     if (error) {
