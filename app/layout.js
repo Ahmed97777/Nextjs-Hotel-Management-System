@@ -1,9 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/SidebarComponents/Sidebar";
 import Header from "@/components/Header";
-import PagesHolder from "@/components/PagesHolder";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +20,11 @@ export default function RootLayout({ children }) {
         >
           <Header />
           <Sidebar />
-          <PagesHolder>{children}</PagesHolder>
+          <div
+            className="bg-gray-50 px-[4.8rem] row-start-2 pt-16 pb-[6.4rem]" /*Main Content*/
+          >
+            {children}
+          </div>
         </main>
       </body>
     </html>

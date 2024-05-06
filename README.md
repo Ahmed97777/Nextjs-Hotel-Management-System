@@ -6,9 +6,7 @@
 
 ### 2- Styling: Tailwind CSS
 
-### 3- Remote state management: React Query
-
-### 4- UI state management: Context API
+### 3- Remote state management: Fetching data on the server with Server Components.
 
 ### 4- Form management: React Hook Form
 
