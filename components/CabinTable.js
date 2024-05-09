@@ -3,43 +3,56 @@
 import { getCabins } from "@/services/apiCabins";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import FetchWarning from "./FetchWarning";
 
 export default function CabinTable() {
-  const { data: cabinsData, error } = useQuery({
+  const {
+    data: cabinsData,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
 
   return (
-    <div className="flex flex-col gap-6">
+    <>
       {Array.isArray(cabinsData) ? (
         cabinsData.map((row) => (
-          <p key={row.name}>
-            lets show the name: {row.name}, then we show the discount:{" "}
-            {row.discount}
-          </p>
-        ))
-      ) : (
-        <div className="alert alert-warning">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="stroke-current shrink-0 h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
+          <div
+            role="row"
+            key={row.name}
+            className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr] gap-x-5 items-center md:py-3 md:px-6 lg:py-[1.6rem] lg:px-[2.4rem] border-b border-solid border-gray-100 last:border-none"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-            />
-          </svg>
-          <span>
-            Warning: there have been a problem with fetching cabins, please
-            refresh the page.
-          </span>
+            <img
+              src={row.image}
+              alt="cabin-img"
+              className="block  md:ml-0 sm:w-14 md:w-16 lg:w-20 aspect-[3/2] object-cover object-center"
+            ></img>
+            <div className="sm:text-xs md:text-base  font-semibold text-gray-600">
+              {row.name}
+            </div>
+            <div className="sm:text-xs md:text-base ">
+              Up to {row.maxCapacity} guests
+            </div>
+            <div className="sm:text-xs font-semibold md:text-base ">
+              $ {row.regularPrice}
+            </div>
+            <div className="sm:text-xs font-semibold md:text-base  text-green-700">
+              $ {row.discount}
+            </div>
+            <button className="sm:text-xs md:text-base ">Delete</button>
+          </div>
+        ))
+      ) : cabinsData === "Cabins could not be loaded" ? (
+        <div role="row">
+          <FetchWarning />
+        </div>
+      ) : (
+        <div role="row" className="flex justify-center items-center">
+          <span className="loading loading-spinner loading-lg text-success"></span>
         </div>
       )}
-    </div>
+    </>
   );
 }
