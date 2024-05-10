@@ -10,15 +10,15 @@ function page() {
 
       <div
         role="table"
-        className="border-2 border-solid border-gray-200 md:text-base lg:text-lg bg-white rounded-lg overflow-hidden"
+        className="border-2 border-solid border-gray-200 bg-white rounded-lg overflow-hidden"
       >
         <header
           role="row"
-          className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr] items-center bg-gray-50 border-2 border-solid border-gray-100 uppercase tracking-wide sm:text-xs md:text-sm lg:text-base font-semibold text-gray-600 md:py-3 md:px-6 lg:py-[1.6rem] lg:px-[2.4rem]"
+          className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr] gap-x-3 bg-gray-50 border-2 border-solid border-gray-100 text-xs sm:text-base font-semibold text-gray-600"
         >
           <div></div>
           <div>Cabin</div>
-          <div className="sm:mr-6">Capacity</div>
+          <div>Capacity</div>
           <div>Price</div>
           <div>Discount</div>
           <div></div>
