@@ -1,6 +1,23 @@
+"use client";
+
+import { deleteCabin } from "@/services/apiCabins";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 
 export default function CabinRow({ row }) {
+  const queryClient = useQueryClient();
+
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: (id) => deleteCabin(id),
+    onSuccess: () => {
+      alert("Cabin successfully deleted");
+      queryClient.invalidateQueries({
+        queryKey: ["cabins"],
+      });
+    },
+    onError: (err) => alert(err.message),
+  });
+
   return (
     <div
       role="row"
@@ -22,7 +39,13 @@ export default function CabinRow({ row }) {
       <div className="text-xs sm:text-base font-semibold text-green-700">
         $ {row.discount}
       </div>
-      <button className="text-xs sm:text-base font-semibold">Delete</button>
+      <button
+        onClick={() => mutate(row.id)}
+        disabled={isDeleting}
+        className="btn-xs btn btn-outline"
+      >
+        Delete
+      </button>
     </div>
   );
 }
