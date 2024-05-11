@@ -1,5 +1,3 @@
-"use client";
-
 import { deleteCabin } from "@/services/apiCabins";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
@@ -42,7 +40,7 @@ export default function CabinRow({ row }) {
       <button
         onClick={() => mutate(row.id)}
         disabled={isDeleting}
-        className="btn-xs btn btn-outline"
+        className="btn-xs btn btn-outline hover:bg-gray-500"
       >
         Delete
       </button>
