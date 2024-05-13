@@ -1,4 +1,5 @@
-import CabinTable from "@/components/CabinTable";
+import CabinsContent from "@/components/CabinsComponents/CabinsContent";
+import CreateCabinForm from "@/components/CabinsComponents/CreateCabinForm";
 
 function page() {
   return (
@@ -9,6 +10,7 @@ function page() {
       </div>
 
       <div
+        /*Cabins Table*/
         role="table"
         className="border-2 border-solid border-gray-200 bg-white rounded-lg overflow-hidden"
       >
@@ -24,8 +26,10 @@ function page() {
           <div></div>
         </header>
 
-        <CabinTable />
+        <CabinsContent />
       </div>
+
+      <CreateCabinForm />
     </>
   );
 }

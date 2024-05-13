@@ -1,12 +1,14 @@
 "use client";
 
-import { getCabins } from "@/services/apiCabins";
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import FetchWarning from "./FetchWarning";
+
+import FetchWarning from "../FetchWarning";
 import CabinRow from "./CabinRow";
 
-export default function CabinTable() {
+import { getCabins } from "@/services/apiCabins";
+import { useQuery } from "@tanstack/react-query";
+
+export default function CabinsContent() {
   const {
     data: cabinsData,
     isLoading,
