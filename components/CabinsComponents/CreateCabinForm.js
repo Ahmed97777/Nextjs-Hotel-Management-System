@@ -2,9 +2,16 @@
 
 import React, { useState } from "react";
 import FormRow from "../FormRow";
+import { useForm } from "react-hook-form";
 
 export default function CreateCabinForm() {
   const [showForm, setShowForm] = useState(false);
+
+  const { register, handleSubmit } = useForm();
+
+  function onSubmit(data) {
+    console.log(data);
+  }
 
   return (
     <div>
@@ -17,7 +24,9 @@ export default function CreateCabinForm() {
 
       {showForm && (
         <form
-          /*Form*/ className="py-[1rem] px-[4rem] max-w-[50rem] overflow-hidden text-xs sm:text-base bg-white border-2 border-solid border-gray-200 rounded-md"
+          /*Form*/
+          className="py-[1rem] px-[4rem] max-w-[50rem] overflow-hidden text-xs sm:text-base bg-white border-2 border-solid border-gray-200 rounded-md"
+          onSubmit={handleSubmit(onSubmit)}
         >
           <FormRow>
             <label className="font-medium mr-7" htmlFor="name">
@@ -27,6 +36,7 @@ export default function CreateCabinForm() {
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="text"
               id="name"
+              {...register("name")}
             ></input>
           </FormRow>
 
@@ -38,6 +48,7 @@ export default function CreateCabinForm() {
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="number"
               id="maxCapacity"
+              {...register("maxCapacity")}
             ></input>
           </FormRow>
 
@@ -49,6 +60,7 @@ export default function CreateCabinForm() {
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="number"
               id="regularPrice"
+              {...register("regularPrice")}
             ></input>
           </FormRow>
 
@@ -61,6 +73,7 @@ export default function CreateCabinForm() {
               type="number"
               defaultValue={0}
               id="discount"
+              {...register("discount")}
             ></input>
           </FormRow>
 
@@ -71,23 +84,28 @@ export default function CreateCabinForm() {
             <textarea
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               id="description"
+              defaultValue=""
+              {...register("description")}
             ></textarea>
           </FormRow>
 
           <FormRow>
-            <label className="font-medium mr-7" htmlFor="cabinPhoto">
+            <label className="font-medium mr-7" htmlFor="image">
               Cabin photo
             </label>
             <input
               className="cursor-pointer border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="file"
-              id="cabinPhoto"
+              id="image"
             ></input>
           </FormRow>
 
           <FormRow>
             <div className="flex justify-evenly min-w-48 col-start-3">
-              <button className="btn btn-sm btn-outline hover:bg-gray-500">
+              <button
+                type="reset"
+                className="btn btn-sm btn-outline hover:bg-gray-500"
+              >
                 Cancel
               </button>
               <button className="btn btn-sm btn-success hover:bg-green-700 hover:text-gray-200">
