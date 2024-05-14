@@ -12,7 +12,7 @@ function page() {
       <div
         /*Cabins Table*/
         role="table"
-        className="border-2 border-solid border-gray-200 bg-white rounded-lg overflow-hidden"
+        className="min-w-[330px] border-2 border-solid border-gray-200 bg-white rounded-lg overflow-hidden"
       >
         <header
           role="row"

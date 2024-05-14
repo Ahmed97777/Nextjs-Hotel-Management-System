@@ -4,7 +4,7 @@
 
 ### 1- Routing: Next.js 14
 
-### 2- Styling: Tailwind CSS
+### 2- Styling: Tailwind CSS and daisyUI-4 for Tailwind
 
 ### 3- Remote state management: Fetching data on the server with Server Components.
 
