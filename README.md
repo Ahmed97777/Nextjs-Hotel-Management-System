@@ -1,4 +1,4 @@
-# Introducing a stunning new Next.js Hotel project.
+# Introducing a stunning new Next.js Hotel System project.
 
 ## This project will use the following technologies:
 

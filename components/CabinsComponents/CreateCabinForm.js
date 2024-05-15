@@ -1,9 +1,11 @@
 "use client";
-
 import React, { useState } from "react";
+
+// import components
 import FormRow from "../FormRow";
 import { createCabin } from "@/services/apiCabins";
 
+// import libraries
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -11,10 +13,13 @@ import toast from "react-hot-toast";
 export default function CreateCabinForm() {
   const [showForm, setShowForm] = useState(false);
 
-  const { register, handleSubmit, reset } = useForm();
+  // use: react-hook-forms elements
+  const { register, handleSubmit, reset, getValues } = useForm();
 
+  // use: queryClient to call invalidateQueries function
   const queryClient = useQueryClient();
 
+  // use: react-query to create newCabin
   const { isLoading: isCreating, mutate } = useMutation({
     mutationFn: (newCabin) => createCabin(newCabin),
     onSuccess: () => {
@@ -27,8 +32,14 @@ export default function CreateCabinForm() {
     onError: (err) => toast.error(err.message),
   });
 
+  // use: onSubmit called if form succeed
   function onSubmit(newCabinData) {
     mutate(newCabinData);
+  }
+
+  // use: onError called if form fails
+  function onError(errors) {
+    console.log(errors);
   }
 
   return (
@@ -44,7 +55,7 @@ export default function CreateCabinForm() {
         <form
           /*Form*/
           className="py-[1rem] px-[4rem] max-w-[50rem] overflow-hidden text-xs sm:text-base bg-white border-2 border-solid border-gray-200 rounded-md"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit, onError)}
         >
           <FormRow>
             <label className="font-medium mr-7" htmlFor="name">
@@ -54,7 +65,9 @@ export default function CreateCabinForm() {
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="text"
               id="name"
-              {...register("name")}
+              {...register("name", {
+                required: "Name field is required",
+              })}
             ></input>
           </FormRow>
 
@@ -66,7 +79,13 @@ export default function CreateCabinForm() {
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="number"
               id="maxCapacity"
-              {...register("maxCapacity")}
+              {...register("maxCapacity", {
+                required: "Capcity field is required",
+                min: {
+                  value: 1,
+                  message: "Capacity should be at least 1",
+                },
+              })}
             ></input>
           </FormRow>
 
@@ -78,7 +97,13 @@ export default function CreateCabinForm() {
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="number"
               id="regularPrice"
-              {...register("regularPrice")}
+              {...register("regularPrice", {
+                required: "Price field is required",
+                min: {
+                  value: 1,
+                  message: "Price should be at least 1",
+                },
+              })}
             ></input>
           </FormRow>
 
@@ -91,7 +116,17 @@ export default function CreateCabinForm() {
               type="number"
               defaultValue={0}
               id="discount"
-              {...register("discount")}
+              {...register("discount", {
+                required: "Discount field is required",
+                validate: (value) => {
+                  const discountValue = Number(value);
+                  const regularPrice = Number(getValues().regularPrice);
+                  return (
+                    discountValue <= regularPrice ||
+                    "Discount should be less than or equal cabin price"
+                  );
+                },
+              })}
             ></input>
           </FormRow>
 
@@ -103,7 +138,9 @@ export default function CreateCabinForm() {
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               id="description"
               defaultValue=""
-              {...register("description")}
+              {...register("description", {
+                required: "Description field is required",
+              })}
             ></textarea>
           </FormRow>
 
