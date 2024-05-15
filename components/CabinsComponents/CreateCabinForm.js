@@ -9,12 +9,16 @@ import { createCabin } from "@/services/apiCabins";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import FormError from "../FormError";
 
 export default function CreateCabinForm() {
   const [showForm, setShowForm] = useState(false);
 
   // use: react-hook-forms elements
-  const { register, handleSubmit, reset, getValues } = useForm();
+  const { register, handleSubmit, reset, getValues, formState } = useForm();
+
+  // define: contain form errors, use: provide feedback to users
+  const { errors } = formState;
 
   // use: queryClient to call invalidateQueries function
   const queryClient = useQueryClient();
@@ -69,6 +73,10 @@ export default function CreateCabinForm() {
                 required: "Name field is required",
               })}
             ></input>
+
+            {errors?.name?.message && (
+              <FormError message={errors.name.message} />
+            )}
           </FormRow>
 
           <FormRow>
@@ -80,13 +88,17 @@ export default function CreateCabinForm() {
               type="number"
               id="maxCapacity"
               {...register("maxCapacity", {
-                required: "Capcity field is required",
+                required: "Capacity field is required",
                 min: {
                   value: 1,
                   message: "Capacity should be at least 1",
                 },
               })}
             ></input>
+
+            {errors?.maxCapacity?.message && (
+              <FormError message={errors.maxCapacity.message} />
+            )}
           </FormRow>
 
           <FormRow>
@@ -105,6 +117,10 @@ export default function CreateCabinForm() {
                 },
               })}
             ></input>
+
+            {errors?.regularPrice?.message && (
+              <FormError message={errors.regularPrice.message} />
+            )}
           </FormRow>
 
           <FormRow>
@@ -123,11 +139,15 @@ export default function CreateCabinForm() {
                   const regularPrice = Number(getValues().regularPrice);
                   return (
                     discountValue <= regularPrice ||
-                    "Discount should be less than or equal cabin price"
+                    "Discount should be less than cabin price"
                   );
                 },
               })}
             ></input>
+
+            {errors?.discount?.message && (
+              <FormError message={errors.discount.message} />
+            )}
           </FormRow>
 
           <FormRow>
@@ -142,6 +162,10 @@ export default function CreateCabinForm() {
                 required: "Description field is required",
               })}
             ></textarea>
+
+            {errors?.description?.message && (
+              <FormError message={errors.description.message} />
+            )}
           </FormRow>
 
           <FormRow>
