@@ -2,15 +2,33 @@
 
 import React, { useState } from "react";
 import FormRow from "../FormRow";
+import { createCabin } from "@/services/apiCabins";
+
 import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 export default function CreateCabinForm() {
   const [showForm, setShowForm] = useState(false);
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
-  function onSubmit(data) {
-    console.log(data);
+  const queryClient = useQueryClient();
+
+  const { isLoading: isCreating, mutate } = useMutation({
+    mutationFn: (newCabin) => createCabin(newCabin),
+    onSuccess: () => {
+      toast.success("New cabin successfully created");
+      queryClient.invalidateQueries({
+        queryKey: ["cabins"],
+      });
+      reset();
+    },
+    onError: (err) => toast.error(err.message),
+  });
+
+  function onSubmit(newCabinData) {
+    mutate(newCabinData);
   }
 
   return (
@@ -108,7 +126,10 @@ export default function CreateCabinForm() {
               >
                 Cancel
               </button>
-              <button className="btn btn-sm btn-success hover:bg-green-700 hover:text-gray-200">
+              <button
+                disabled={isCreating}
+                className="btn btn-sm btn-success hover:bg-green-700 hover:text-gray-200"
+              >
                 Add Cabin
               </button>
             </div>
