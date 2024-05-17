@@ -9,7 +9,6 @@ import { createCabin } from "@/services/apiCabins";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import FormError from "../FormError";
 
 export default function CreateCabinForm() {
   const [showForm, setShowForm] = useState(false);
@@ -61,10 +60,7 @@ export default function CreateCabinForm() {
           className="py-[1rem] px-[4rem] max-w-[50rem] overflow-hidden text-xs sm:text-base bg-white border-2 border-solid border-gray-200 rounded-md"
           onSubmit={handleSubmit(onSubmit, onError)}
         >
-          <FormRow>
-            <label className="font-medium mr-7" htmlFor="name">
-              Cabin name
-            </label>
+          <FormRow label="Cabin name" error={errors?.name?.message}>
             <input
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="text"
@@ -73,16 +69,12 @@ export default function CreateCabinForm() {
                 required: "Name field is required",
               })}
             ></input>
-
-            {errors?.name?.message && (
-              <FormError message={errors.name.message} />
-            )}
           </FormRow>
 
-          <FormRow>
-            <label className="font-medium mr-7" htmlFor="maxCapacity">
-              Maximum capacity
-            </label>
+          <FormRow
+            label="Maximum capacity"
+            error={errors?.maxCapacity?.message}
+          >
             <input
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="number"
@@ -95,16 +87,9 @@ export default function CreateCabinForm() {
                 },
               })}
             ></input>
-
-            {errors?.maxCapacity?.message && (
-              <FormError message={errors.maxCapacity.message} />
-            )}
           </FormRow>
 
-          <FormRow>
-            <label className="font-medium mr-7" htmlFor="regularPrice">
-              Regular price
-            </label>
+          <FormRow label="Regular price" error={errors?.regularPrice?.message}>
             <input
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="number"
@@ -117,16 +102,9 @@ export default function CreateCabinForm() {
                 },
               })}
             ></input>
-
-            {errors?.regularPrice?.message && (
-              <FormError message={errors.regularPrice.message} />
-            )}
           </FormRow>
 
-          <FormRow>
-            <label className="font-medium mr-7" htmlFor="discount">
-              Discount
-            </label>
+          <FormRow label="Discount" error={errors?.discount?.message}>
             <input
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="number"
@@ -144,16 +122,9 @@ export default function CreateCabinForm() {
                 },
               })}
             ></input>
-
-            {errors?.discount?.message && (
-              <FormError message={errors.discount.message} />
-            )}
           </FormRow>
 
-          <FormRow>
-            <label className="font-medium mr-7" htmlFor="description">
-              Description
-            </label>
+          <FormRow label="Description" error={errors?.description?.message}>
             <textarea
               className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               id="description"
@@ -162,16 +133,9 @@ export default function CreateCabinForm() {
                 required: "Description field is required",
               })}
             ></textarea>
-
-            {errors?.description?.message && (
-              <FormError message={errors.description.message} />
-            )}
           </FormRow>
 
-          <FormRow>
-            <label className="font-medium mr-7" htmlFor="image">
-              Cabin photo
-            </label>
+          <FormRow label="Cabin photo">
             <input
               className="cursor-pointer border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
               type="file"
