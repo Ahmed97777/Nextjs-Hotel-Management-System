@@ -62,7 +62,7 @@ export default function CreateCabinForm() {
         >
           <FormRow label="Cabin name" error={errors?.name?.message}>
             <input
-              className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
+              className="input input-bordered input-success input-sm min-w-48 col-start-2"
               type="text"
               id="name"
               {...register("name", {
@@ -76,7 +76,7 @@ export default function CreateCabinForm() {
             error={errors?.maxCapacity?.message}
           >
             <input
-              className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
+              className="input input-bordered input-success input-sm min-w-48 col-start-2"
               type="number"
               id="maxCapacity"
               {...register("maxCapacity", {
@@ -91,7 +91,7 @@ export default function CreateCabinForm() {
 
           <FormRow label="Regular price" error={errors?.regularPrice?.message}>
             <input
-              className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
+              className="input input-bordered input-success input-sm min-w-48 col-start-2"
               type="number"
               id="regularPrice"
               {...register("regularPrice", {
@@ -106,7 +106,7 @@ export default function CreateCabinForm() {
 
           <FormRow label="Discount" error={errors?.discount?.message}>
             <input
-              className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
+              className="input input-bordered input-success input-sm min-w-48 col-start-2"
               type="number"
               defaultValue={0}
               id="discount"
@@ -126,7 +126,7 @@ export default function CreateCabinForm() {
 
           <FormRow label="Description" error={errors?.description?.message}>
             <textarea
-              className="border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
+              className="textarea textarea-success min-w-48 col-start-2"
               id="description"
               defaultValue=""
               {...register("description", {
@@ -137,7 +137,7 @@ export default function CreateCabinForm() {
 
           <FormRow label="Cabin photo">
             <input
-              className="cursor-pointer border-[1px] border-solid border-gray-300 rounded-md min-w-48 col-start-2"
+              className="file-input file-input-bordered file-input-success file-input-sm min-w-48 col-start-2"
               type="file"
               id="image"
             ></input>
