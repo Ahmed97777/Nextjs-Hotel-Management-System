@@ -1,7 +1,12 @@
+"use client";
+
 import CabinsContent from "@/components/CabinsComponents/CabinsContent";
 import CreateCabinForm from "@/components/CabinsComponents/CreateCabinForm";
+import { useState } from "react";
 
-function page() {
+function Page() {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <>
       <div className="flex items-center justify-between">
@@ -29,9 +34,16 @@ function page() {
         <CabinsContent />
       </div>
 
-      <CreateCabinForm />
+      <button
+        className="btn btn-success hover:bg-green-700 hover:text-gray-200 mb-4"
+        onClick={() => setShowForm((show) => !show)}
+      >
+        Add new cabin
+      </button>
+
+      {showForm && <CreateCabinForm />}
     </>
   );
 }
 
-export default page;
+export default Page;

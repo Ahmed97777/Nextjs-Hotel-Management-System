@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 
 import FetchWarning from "../FetchWarning";
@@ -21,7 +19,7 @@ export default function CabinsContent() {
   return (
     <>
       {Array.isArray(cabinsData) ? (
-        cabinsData.map((row) => <CabinRow key={row.name} row={row} />)
+        cabinsData.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)
       ) : cabinsData === "Cabins could not be loaded" ? (
         <div role="row">
           <FetchWarning />
