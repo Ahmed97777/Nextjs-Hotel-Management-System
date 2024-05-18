@@ -1,28 +1,26 @@
 "use client";
+
 import React, { useState } from "react";
-
-// import components
-import FormRow from "../FormRow";
-import { createCabin } from "@/services/apiCabins";
-
-// import libraries
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
+import FormRow from "../FormRow";
+import { createCabin } from "@/services/apiCabins";
+
 export default function CreateCabinForm() {
   const [showForm, setShowForm] = useState(false);
 
-  // use: react-hook-forms elements
+  // react-hook-forms elements
   const { register, handleSubmit, reset, getValues, formState } = useForm();
 
-  // define: contain form errors, use: provide feedback to users
+  // Form errors to provide feedback to users
   const { errors } = formState;
 
-  // use: queryClient to call invalidateQueries function
+  // queryClient to call invalidateQueries function
   const queryClient = useQueryClient();
 
-  // use: react-query to create newCabin
+  // react-query to create newCabin
   const { isLoading: isCreating, mutate } = useMutation({
     mutationFn: (newCabin) => createCabin(newCabin),
     onSuccess: () => {
@@ -35,12 +33,13 @@ export default function CreateCabinForm() {
     onError: (err) => toast.error(err.message),
   });
 
-  // use: onSubmit called if form succeed
+  // onSubmit called if form succeed
   function onSubmit(newCabinData) {
-    mutate(newCabinData);
+    // newCabinData = FileList {0: File, length: 1} so we do the following
+    mutate({ ...newCabinData, image: newCabinData.image[0] });
   }
 
-  // use: onError called if form fails
+  // onError called if form fails
   function onError(errors) {
     console.log(errors);
   }
@@ -146,6 +145,10 @@ export default function CreateCabinForm() {
               type="file"
               id="image"
               disabled={isCreating}
+              accept="image/*"
+              {...register("image", {
+                required: "Image field is required",
+              })}
             ></input>
           </FormRow>
 
