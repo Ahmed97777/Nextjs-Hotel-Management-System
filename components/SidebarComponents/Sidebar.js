@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarListItem from "./SidebarListItem";
 
 import {
-  faHouse,
+  faHouseChimneyWindow,
   faHotel,
   faUsers,
   faTableColumns,
@@ -17,7 +17,7 @@ function Sidebar() {
   const sidebarData = [
     { linkTo: "/dashboard", icon: faTableColumns, name: "Home" },
     { linkTo: "/bookings", icon: faBookOpen, name: "Bookings" },
-    { linkTo: "/cabins", icon: faHouse, name: "Cabins" },
+    { linkTo: "/cabins", icon: faHouseChimneyWindow, name: "Cabins" },
     { linkTo: "/users", icon: faUsers, name: "Users" },
     { linkTo: "/settings", icon: faGear, name: "Settings" },
   ];

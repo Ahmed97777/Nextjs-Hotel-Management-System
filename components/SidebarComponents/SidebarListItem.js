@@ -3,18 +3,14 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function SidebarListItem({ linkTo, icon, name }) {
   const pathName = usePathname();
-  // console.log("===============", pathName);
-
   const isLinkActive = pathName.startsWith(linkTo);
-  // console.log("dddddd", isLinkActive);
 
   return (
-    <li>
+    <li title={name}>
       <Link
         href={linkTo}
         className={`flex justify-center sm:justify-normal items-center ${

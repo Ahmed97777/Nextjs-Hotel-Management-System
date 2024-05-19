@@ -1,57 +1,95 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClone,
+  faPenToSquare,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 
 import CreateCabinForm from "./CreateCabinForm";
 import { useDeleteCabin } from "./useDeleteCabin";
+import { useCreateCabin } from "./useCreateCabin";
 
 export default function CabinRow({ cabin }) {
   const [showEditForm, setShowEditForm] = useState(false);
   const { isDeleting, deleteCabin } = useDeleteCabin();
+  const { isCreating: isDuplicating, createCabin } = useCreateCabin();
+
+  const {
+    id: cabinId,
+    name,
+    image,
+    maxCapacity,
+    regularPrice,
+    discount,
+    description,
+  } = cabin;
+
+  function handleDuplicate() {
+    createCabin({
+      name: `Copy of ${name}`,
+      image,
+      maxCapacity,
+      regularPrice,
+      discount,
+      description,
+    });
+  }
 
   return (
     <>
       <div
         role="row"
-        key={cabin.name}
+        key={cabinId}
         className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr] gap-x-3 items-center border-b border-solid border-gray-100 last:border-none"
       >
         <img
-          src={cabin.image}
+          src={image}
           alt="cabin-img"
           className="block p-1 w-9 sm:w-14 md:w-16 lg:w-20 aspect-[3/2] object-cover object-center"
         ></img>
 
         <div className="text-xs sm:text-base font-semibold text-gray-600">
-          {cabin.name}
+          {name}
         </div>
 
-        <div className="text-xs sm:text-base">
-          Up to {cabin.maxCapacity} guests
-        </div>
+        <div className="text-xs sm:text-base">Up to {maxCapacity} guests</div>
 
         <div className="text-xs sm:text-base font-semibold">
-          ${cabin.regularPrice}
+          ${regularPrice}
         </div>
 
         <div className="text-xs sm:text-base font-semibold text-green-700">
-          {cabin.discount ? `$${cabin.discount}` : <span>&mdash;</span>}
+          {discount ? `$${discount}` : <span>&mdash;</span>}
         </div>
 
         <div className="flex gap-1">
           <button
+            onClick={handleDuplicate}
+            disabled={isDuplicating}
             className="btn-xs btn btn-outline hover:bg-gray-500"
+            title="Duplicate"
+          >
+            <FontAwesomeIcon className="size-3" icon={faClone} />
+          </button>
+
+          <button
+            className="btn-xs btn btn-outline hover:bg-gray-500"
+            title="Edit"
             onClick={() => {
               setShowEditForm((show) => !show);
             }}
           >
-            Edit
+            <FontAwesomeIcon className="size-3" icon={faPenToSquare} />
           </button>
 
           <button
             onClick={() => deleteCabin(cabin.id)}
+            title="Delete"
             disabled={isDeleting}
             className="btn-xs btn btn-outline hover:bg-gray-500"
           >
-            Delete
+            <FontAwesomeIcon className="size-3" icon={faTrashCan} />
           </button>
         </div>
       </div>
