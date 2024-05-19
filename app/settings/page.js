@@ -6,7 +6,7 @@ import SettingsForm from "@/components/SettingsForm";
 import FetchWarning from "@/components/FetchWarning";
 
 function Page() {
-  const { settingsData, isLoading } = useGetSettings();
+  const { settingsData } = useGetSettings();
   // console.log(settingsData);
 
   return (
