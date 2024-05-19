@@ -1,25 +1,11 @@
 import React, { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
-import { deleteCabin } from "@/services/apiCabins";
 import CreateCabinForm from "./CreateCabinForm";
+import { useDeleteCabin } from "./useDeleteCabin";
 
 export default function CabinRow({ cabin }) {
-  const queryClient = useQueryClient();
-
   const [showEditForm, setShowEditForm] = useState(false);
-
-  const { isLoading: isDeleting, mutate } = useMutation({
-    mutationFn: (id) => deleteCabin(id),
-    onSuccess: () => {
-      toast.success("Cabin successfully deleted");
-      queryClient.invalidateQueries({
-        queryKey: ["cabins"],
-      });
-    },
-    onError: (err) => toast.error(err.message),
-  });
+  const { isDeleting, deleteCabin } = useDeleteCabin();
 
   return (
     <>
@@ -43,11 +29,11 @@ export default function CabinRow({ cabin }) {
         </div>
 
         <div className="text-xs sm:text-base font-semibold">
-          $ {cabin.regularPrice}
+          ${cabin.regularPrice}
         </div>
 
         <div className="text-xs sm:text-base font-semibold text-green-700">
-          $ {cabin.discount}
+          {cabin.discount ? `$${cabin.discount}` : <span>&mdash;</span>}
         </div>
 
         <div className="flex gap-1">
@@ -61,7 +47,7 @@ export default function CabinRow({ cabin }) {
           </button>
 
           <button
-            onClick={() => mutate(cabin.id)}
+            onClick={() => deleteCabin(cabin.id)}
             disabled={isDeleting}
             className="btn-xs btn btn-outline hover:bg-gray-500"
           >

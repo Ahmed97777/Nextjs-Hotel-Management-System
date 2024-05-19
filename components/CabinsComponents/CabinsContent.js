@@ -1,20 +1,10 @@
 import React from "react";
-
 import FetchWarning from "../FetchWarning";
 import CabinRow from "./CabinRow";
-
-import { getCabins } from "@/services/apiCabins";
-import { useQuery } from "@tanstack/react-query";
+import { useGetCabins } from "./useGetCabins";
 
 export default function CabinsContent() {
-  const {
-    data: cabinsData,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["cabins"],
-    queryFn: getCabins,
-  });
+  const { cabinsData } = useGetCabins();
 
   return (
     <>
