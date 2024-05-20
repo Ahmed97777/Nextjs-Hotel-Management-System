@@ -1,5 +1,5 @@
 import React from "react";
-import SettingsContent from "@/components/SettingsContent";
+import SettingsContent from "@/components/SettingsComps/SettingsContent";
 
 function page() {
   return (

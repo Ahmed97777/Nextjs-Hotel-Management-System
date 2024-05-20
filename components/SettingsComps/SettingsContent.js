@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import FetchWarning from "./FetchWarning";
-import { useGetSettings } from "./useGetSettings";
 import SettingsForm from "./SettingsForm";
+import FetchWarning from "../FetchWarning";
+import { useGetSettings } from "./useGetSettings";
 
 export default function SettingsContent() {
   const { settingsData } = useGetSettings();
