@@ -1,14 +1,7 @@
-"use client";
-
 import React from "react";
-import { useGetSettings } from "./useGetSettings";
-import SettingsForm from "@/components/SettingsForm";
-import FetchWarning from "@/components/FetchWarning";
+import SettingsContent from "@/components/SettingsContent";
 
-function Page() {
-  const { settingsData } = useGetSettings();
-  // console.log(settingsData);
-
+function page() {
   return (
     <>
       <div className="">
@@ -17,17 +10,9 @@ function Page() {
         </h1>
       </div>
 
-      {typeof settingsData === "object" ? (
-        <SettingsForm settingsData={settingsData} />
-      ) : settingsData === "Settings data could not be loaded" ? (
-        <FetchWarning message="Warning: there have been a problem with fetching settings, please refresh the page." />
-      ) : (
-        <div className="flex justify-center items-center">
-          <span className="loading loading-spinner loading-lg text-success"></span>
-        </div>
-      )}
+      <SettingsContent />
     </>
   );
 }
 
-export default Page;
+export default page;
