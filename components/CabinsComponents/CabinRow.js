@@ -95,11 +95,12 @@ export default function CabinRow({ cabin }) {
         </div>
       </div>
 
-      {showEditForm && <CreateCabinForm cabinToEdit={cabin} />}
-
       {showEditForm && (
         <ModalForm onClose={() => setShowEditForm(false)}>
-          <CreateCabinForm cabinToEdit={cabin} />
+          <CreateCabinForm
+            cabinToEdit={cabin}
+            onCloseModal={() => setShowEditForm(false)}
+          />
         </ModalForm>
       )}
     </>

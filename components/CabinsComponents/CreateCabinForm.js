@@ -3,7 +3,7 @@ import FormRow from "../FormRow";
 import { useCreateCabin } from "./useCreateCabin";
 import { useEditCabin } from "./useEditCabin";
 
-export default function CreateCabinForm({ cabinToEdit = {} }) {
+export default function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { isCreating, createCabin } = useCreateCabin();
   const { isEditing, editCabin } = useEditCabin();
   const isWorking = isCreating || isEditing;
@@ -33,6 +33,7 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
         {
           onSuccess: () => {
             reset();
+            onCloseModal?.();
           },
         }
       );
@@ -43,6 +44,7 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
           onSuccess: (cabinCreated) => {
             // console.log(cabinCreated);
             reset();
+            onCloseModal?.();
           },
         }
       );
@@ -155,6 +157,7 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
           <button
             disabled={isWorking}
             type="reset"
+            onClick={() => onCloseModal?.()}
             className="btn btn-xs sm:btn-sm btn-outline hover:bg-gray-500"
           >
             Cancel

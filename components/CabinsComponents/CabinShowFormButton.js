@@ -17,7 +17,7 @@ export default function CabinShowFormButton() {
 
       {isOpenModal && (
         <ModalForm onClose={() => setIsOpenModal(false)}>
-          <CreateCabinForm />
+          <CreateCabinForm onCloseModal={() => setIsOpenModal(false)} />
         </ModalForm>
       )}
     </>
