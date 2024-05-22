@@ -1,6 +1,9 @@
 import React from "react";
+import { useOutsideClickModal } from "./HooksComps/useOutsideClickModal";
 
 export default function ModalForm({ children, onClose }) {
+  const modalRef = useOutsideClickModal(onClose);
+
   return (
     <div
       //overlay
@@ -8,6 +11,7 @@ export default function ModalForm({ children, onClose }) {
     >
       <div
         // Styled Modal
+        ref={modalRef}
         className="flex flex-col p-12 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg"
       >
         <button
