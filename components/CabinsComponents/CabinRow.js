@@ -9,6 +9,7 @@ import {
 import CreateCabinForm from "./CreateCabinForm";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { useCreateCabin } from "./useCreateCabin";
+import ModalForm from "../ModalForm";
 
 export default function CabinRow({ cabin }) {
   const [showEditForm, setShowEditForm] = useState(false);
@@ -95,6 +96,12 @@ export default function CabinRow({ cabin }) {
       </div>
 
       {showEditForm && <CreateCabinForm cabinToEdit={cabin} />}
+
+      {showEditForm && (
+        <ModalForm onClose={() => setShowEditForm(false)}>
+          <CreateCabinForm cabinToEdit={cabin} />
+        </ModalForm>
+      )}
     </>
   );
 }
