@@ -57,12 +57,12 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
   return (
     <form
       /*Form*/
-      className="py-[1rem] px-[4rem] max-w-[50rem] overflow-hidden text-xs sm:text-base bg-white border-2 border-solid border-gray-200 rounded-md"
+      className="py-[1rem] px-[4rem] max-w-[50rem] overflow-hidden text-sm sm:text-base bg-white border-2 border-solid border-gray-200 rounded-md"
       onSubmit={handleSubmit(onSubmit, onError)}
     >
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <input
-          className="input input-bordered input-success input-sm min-w-48 col-start-2"
+          className="input input-bordered input-success input-xs sm:input-sm min-w-48 col-start-2"
           type="text"
           id="name"
           disabled={isWorking}
@@ -74,7 +74,7 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
         <input
-          className="input input-bordered input-success input-sm min-w-48 col-start-2"
+          className="input input-bordered input-success input-xs sm:input-sm min-w-48 col-start-2"
           type="number"
           id="maxCapacity"
           disabled={isWorking}
@@ -90,7 +90,7 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow label="Regular price" error={errors?.regularPrice?.message}>
         <input
-          className="input input-bordered input-success input-sm min-w-48 col-start-2"
+          className="input input-bordered input-success input-xs sm:input-sm min-w-48 col-start-2"
           type="number"
           id="regularPrice"
           disabled={isWorking}
@@ -106,7 +106,7 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow label="Discount" error={errors?.discount?.message}>
         <input
-          className="input input-bordered input-success input-sm min-w-48 col-start-2"
+          className="input input-bordered input-success input-xs sm:input-sm min-w-48 col-start-2"
           type="number"
           defaultValue={0}
           disabled={isWorking}
@@ -127,7 +127,7 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow label="Description" error={errors?.description?.message}>
         <textarea
-          className="textarea textarea-success min-w-48 col-start-2"
+          className="textarea textarea-success textarea-xs sm:textarea-sm min-w-48 col-start-2"
           id="description"
           defaultValue=""
           disabled={isWorking}
@@ -139,7 +139,7 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow label="Cabin photo" error={errors?.image?.message}>
         <input
-          className="file-input file-input-bordered file-input-success file-input-sm min-w-48 col-start-2"
+          className="file-input file-input-bordered file-input-success file-input-xs sm:file-input-sm min-w-48 col-start-2"
           type="file"
           id="image"
           disabled={isWorking}
@@ -155,13 +155,13 @@ export default function CreateCabinForm({ cabinToEdit = {} }) {
           <button
             disabled={isWorking}
             type="reset"
-            className="btn btn-sm btn-outline hover:bg-gray-500"
+            className="btn btn-xs sm:btn-sm btn-outline hover:bg-gray-500"
           >
             Cancel
           </button>
           <button
             disabled={isWorking}
-            className="btn btn-sm btn-success hover:bg-green-700 hover:text-gray-200"
+            className="btn btn-xs sm:btn-sm btn-success hover:bg-green-700 hover:text-gray-200"
           >
             {isEditSession ? "Edit Cabin" : "Add Cabin"}
           </button>
