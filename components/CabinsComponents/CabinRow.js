@@ -44,7 +44,7 @@ export default function CabinRow({ cabin }) {
       <div
         role="row"
         key={cabinId}
-        className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr] gap-x-3 items-center border-b border-solid border-gray-100 last:border-none"
+        className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr] items-center border-b border-solid border-gray-100 last:border-none"
       >
         <img
           src={image}
@@ -56,7 +56,7 @@ export default function CabinRow({ cabin }) {
           {name}
         </div>
 
-        <div className="text-xs sm:text-base">Up to {maxCapacity} guests</div>
+        <div className="text-xs sm:text-base">{maxCapacity} guests</div>
 
         <div className="text-xs sm:text-base font-semibold">
           ${regularPrice}
