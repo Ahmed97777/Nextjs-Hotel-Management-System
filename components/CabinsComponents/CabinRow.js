@@ -10,9 +10,11 @@ import CreateCabinForm from "./CreateCabinForm";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { useCreateCabin } from "./useCreateCabin";
 import ModalForm from "../ModalForm";
+import ConfirmDelete from "../ConfirmDelete";
 
 export default function CabinRow({ cabin }) {
   const [showEditForm, setShowEditForm] = useState(false);
+  const [isConfirmDelete, setIsConfirmDelete] = useState(false);
   const { isDeleting, deleteCabin } = useDeleteCabin();
   const { isCreating: isDuplicating, createCabin } = useCreateCabin();
 
@@ -85,15 +87,25 @@ export default function CabinRow({ cabin }) {
           </button>
 
           <button
-            onClick={() => deleteCabin(cabin.id)}
+            onClick={() => setIsConfirmDelete((show) => !show)}
             title="Delete"
-            disabled={isDeleting}
             className="btn-xs btn btn-outline hover:bg-gray-500"
           >
             <FontAwesomeIcon className="size-3" icon={faTrashCan} />
           </button>
         </div>
       </div>
+
+      {isConfirmDelete && (
+        <ModalForm onClose={() => setIsConfirmDelete(false)}>
+          <ConfirmDelete
+            resourceName={name}
+            onCloseModal={() => setIsConfirmDelete(false)}
+            onConfirm={() => deleteCabin(cabin.id)}
+            disabled={isDeleting}
+          />
+        </ModalForm>
+      )}
 
       {showEditForm && (
         <ModalForm onClose={() => setShowEditForm(false)}>
