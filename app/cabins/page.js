@@ -1,5 +1,6 @@
 import CabinShowFormButton from "@/components/CabinsComponents/CabinShowFormButton";
 import CabinsContent from "@/components/CabinsComponents/CabinsContent";
+import Menus from "@/components/Menus";
 
 function Page() {
   return (
@@ -14,25 +15,27 @@ function Page() {
         <CabinShowFormButton />
       </div>
 
-      <div
-        /*Cabins Table*/
-        role="table"
-        className="border-2 border-solid border-gray-200 bg-white rounded-lg overflow-hidden"
-      >
-        <header
-          role="row"
-          className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr] bg-gray-50 border-2 border-solid border-gray-100 text-xs sm:text-sm md:text-base font-semibold text-gray-600"
+      <Menus>
+        <div
+          /*Cabins Table*/
+          role="table"
+          className="border-2 border-solid border-gray-200 bg-white rounded-lg overflow-hidden"
         >
-          <div></div>
-          <div>Cabin</div>
-          <div>Capacity</div>
-          <div>Price</div>
-          <div>Discount</div>
-          <div></div>
-        </header>
+          <header
+            role="row"
+            className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr] bg-gray-50 border-2 border-solid border-gray-100 text-xs sm:text-sm md:text-base font-semibold text-gray-600"
+          >
+            <div></div>
+            <div>Cabin</div>
+            <div>Capacity</div>
+            <div>Price</div>
+            <div>Discount</div>
+            <div></div>
+          </header>
 
-        <CabinsContent />
-      </div>
+          <CabinsContent />
+        </div>
+      </Menus>
     </>
   );
 }

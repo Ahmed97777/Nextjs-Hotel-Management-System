@@ -11,6 +11,7 @@ import { useDeleteCabin } from "./useDeleteCabin";
 import { useCreateCabin } from "./useCreateCabin";
 import ModalForm from "../ModalForm";
 import ConfirmDelete from "../ConfirmDelete";
+import Menus from "../Menus";
 
 export default function CabinRow({ cabin }) {
   const [showEditForm, setShowEditForm] = useState(false);
@@ -42,6 +43,7 @@ export default function CabinRow({ cabin }) {
   return (
     <>
       <div
+        // Table Row
         role="row"
         key={cabinId}
         className="grid grid-cols-[1fr,1fr,1fr,1fr,1fr,1fr] items-center border-b border-solid border-gray-100 last:border-none"
@@ -66,7 +68,7 @@ export default function CabinRow({ cabin }) {
           {discount ? `$${discount}` : <span>&mdash;</span>}
         </div>
 
-        <div className="flex gap-1">
+        {/* <div className="flex gap-1">
           <button
             onClick={handleDuplicate}
             disabled={isDuplicating}
@@ -93,7 +95,32 @@ export default function CabinRow({ cabin }) {
           >
             <FontAwesomeIcon className="size-3" icon={faTrashCan} />
           </button>
-        </div>
+        </div> */}
+
+        <Menus.Menu>
+          <Menus.Toggle id={cabinId} />
+
+          <Menus.List id={cabinId} position={{ x: 20, y: 20 }}>
+            <Menus.Button>
+              <FontAwesomeIcon
+                className="size-3 text-gray-400 transition-all duration-300"
+                icon={faClone}
+              />
+            </Menus.Button>
+            <Menus.Button>
+              <FontAwesomeIcon
+                className="size-3 text-gray-400 transition-all duration-300"
+                icon={faPenToSquare}
+              />
+            </Menus.Button>
+            <Menus.Button>
+              <FontAwesomeIcon
+                className="size-3 text-gray-400 transition-all duration-300"
+                icon={faTrashCan}
+              />
+            </Menus.Button>
+          </Menus.List>
+        </Menus.Menu>
       </div>
 
       {isConfirmDelete && (
