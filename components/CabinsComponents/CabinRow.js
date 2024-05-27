@@ -68,56 +68,35 @@ export default function CabinRow({ cabin }) {
           {discount ? `$${discount}` : <span>&mdash;</span>}
         </div>
 
-        {/* <div className="flex gap-1">
-          <button
-            onClick={handleDuplicate}
-            disabled={isDuplicating}
-            className="btn-xs btn btn-outline hover:bg-gray-500"
-            title="Duplicate"
-          >
-            <FontAwesomeIcon className="size-3" icon={faClone} />
-          </button>
-
-          <button
-            className="btn-xs btn btn-outline hover:bg-gray-500"
-            title="Edit"
-            onClick={() => {
-              setShowEditForm((show) => !show);
-            }}
-          >
-            <FontAwesomeIcon className="size-3" icon={faPenToSquare} />
-          </button>
-
-          <button
-            onClick={() => setIsConfirmDelete((show) => !show)}
-            title="Delete"
-            className="btn-xs btn btn-outline hover:bg-gray-500"
-          >
-            <FontAwesomeIcon className="size-3" icon={faTrashCan} />
-          </button>
-        </div> */}
-
         <Menus.Menu>
           <Menus.Toggle id={cabinId} />
 
           <Menus.List id={cabinId}>
-            <Menus.Button>
-              <FontAwesomeIcon
-                className="size-3 text-gray-400 transition-all duration-300"
-                icon={faClone}
-              />
+            <Menus.Button
+              className="btn-xs btn btn-outline hover:bg-gray-500"
+              title="Duplicate"
+              onClick={handleDuplicate}
+              disabled={isDuplicating}
+            >
+              <FontAwesomeIcon className="size-2" icon={faClone} />
             </Menus.Button>
-            <Menus.Button>
-              <FontAwesomeIcon
-                className="size-3 text-gray-400 transition-all duration-300"
-                icon={faPenToSquare}
-              />
+
+            <Menus.Button
+              className="btn-xs btn btn-outline hover:bg-gray-500"
+              title="Edit"
+              onClick={() => {
+                setShowEditForm((show) => !show);
+              }}
+            >
+              <FontAwesomeIcon className="size-2" icon={faPenToSquare} />
             </Menus.Button>
-            <Menus.Button>
-              <FontAwesomeIcon
-                className="size-3 text-gray-400 transition-all duration-300"
-                icon={faTrashCan}
-              />
+
+            <Menus.Button
+              className="btn-xs btn btn-outline hover:bg-gray-500"
+              title="Delete"
+              onClick={() => setIsConfirmDelete((show) => !show)}
+            >
+              <FontAwesomeIcon className="size-2" icon={faTrashCan} />
             </Menus.Button>
           </Menus.List>
         </Menus.Menu>

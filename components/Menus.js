@@ -68,16 +68,24 @@ function List({ id, children }) {
   if (openId !== id) return null;
 
   return (
-    <ul className="fixed z-[1] bg-gray-50 shadow-md rounded-md" style={style}>
+    <ul
+      className="fixed z-[1] bg-gray-50 space-y-1 shadow-md rounded-md"
+      style={style}
+    >
       {children}
     </ul>
   );
 }
 
-function Button({ children }) {
+function Button({ className, onClick, disabled, title, children }) {
   return (
     <li>
-      <button className="w-full text-left bg-none border-none p-5 text-lg transition-all duration-200 flex items-center gap-4 hover:bg-gray-50">
+      <button
+        className={className}
+        onClick={onClick}
+        disabled={disabled}
+        title={title}
+      >
         {children}
       </button>
     </li>
