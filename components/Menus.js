@@ -12,11 +12,15 @@ const MenusContext = createContext();
 
 function Menus({ children }) {
   const [openId, setOpenId] = useState("");
+  const [position, setPosition] = useState(null);
+
   const close = () => setOpenId("");
   const open = setOpenId;
 
   return (
-    <MenusContext.Provider value={{ openId, close, open }}>
+    <MenusContext.Provider
+      value={{ openId, close, open, position, setPosition }}
+    >
       {children}
     </MenusContext.Provider>
   );
@@ -28,9 +32,15 @@ function Menu({ children }) {
 }
 
 function Toggle({ id }) {
-  const { openId, close, open } = useContext(MenusContext);
+  const { openId, close, open, setPosition } = useContext(MenusContext);
 
-  function handleClick() {
+  function handleClick(e) {
+    const rectPosition = e.target.closest("button").getBoundingClientRect();
+    setPosition({
+      x: window.innerWidth - rectPosition?.width - rectPosition?.x,
+      y: rectPosition?.y + rectPosition?.height + 8,
+    });
+
     openId === "" || openId !== id ? open(id) : close();
   }
 
@@ -47,18 +57,18 @@ function Toggle({ id }) {
   );
 }
 
-function List({ id, position, children }) {
-  const style = {
-    right: `${position.x}px`,
-    top: `${position.y}px`,
-  };
+function List({ id, children }) {
+  const { openId, position } = useContext(MenusContext);
 
-  const { openId } = useContext(MenusContext);
+  const style = {
+    right: `${position?.x}px`,
+    top: `${position?.y}px`,
+  };
 
   if (openId !== id) return null;
 
   return (
-    <ul className="fixed bg-gray-50 shadow-md rounded-md" style={style}>
+    <ul className="fixed z-[1] bg-gray-50 shadow-md rounded-md" style={style}>
       {children}
     </ul>
   );

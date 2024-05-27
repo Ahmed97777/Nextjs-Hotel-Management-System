@@ -100,7 +100,7 @@ export default function CabinRow({ cabin }) {
         <Menus.Menu>
           <Menus.Toggle id={cabinId} />
 
-          <Menus.List id={cabinId} position={{ x: 20, y: 20 }}>
+          <Menus.List id={cabinId}>
             <Menus.Button>
               <FontAwesomeIcon
                 className="size-3 text-gray-400 transition-all duration-300"
