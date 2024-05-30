@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { useOutsideClickModal } from "./HooksComps/useOutsideClickModal";
 
 // Menus.js component is a compound component, will be used to create Menus.
 
@@ -58,7 +59,9 @@ function Toggle({ id }) {
 }
 
 function List({ id, children }) {
-  const { openId, position } = useContext(MenusContext);
+  const { openId, close, position } = useContext(MenusContext);
+
+  const ref = useOutsideClickModal(close);
 
   const style = {
     right: `${position?.x}px`,
@@ -69,6 +72,7 @@ function List({ id, children }) {
 
   return (
     <ul
+      ref={ref}
       className="fixed z-[1] bg-gray-50 space-y-1 shadow-md rounded-md"
       style={style}
     >
@@ -77,12 +81,19 @@ function List({ id, children }) {
   );
 }
 
-function Button({ className, onClick, disabled, title, children }) {
+function Button({ onClick, disabled, title, children }) {
+  const { close } = useContext(MenusContext);
+
+  function handleClick() {
+    onClick?.();
+    close();
+  }
+
   return (
-    <li>
+    <li className="w-full">
       <button
-        className={className}
-        onClick={onClick}
+        className="btn-xs w-full justify-start btn btn-outline border-none hover:bg-gray-500"
+        onClick={handleClick}
         disabled={disabled}
         title={title}
       >

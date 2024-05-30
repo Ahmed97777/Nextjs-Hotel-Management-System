@@ -73,30 +73,30 @@ export default function CabinRow({ cabin }) {
 
           <Menus.List id={cabinId}>
             <Menus.Button
-              className="btn-xs btn btn-outline hover:bg-gray-500"
               title="Duplicate"
               onClick={handleDuplicate}
               disabled={isDuplicating}
             >
-              <FontAwesomeIcon className="size-2" icon={faClone} />
+              <FontAwesomeIcon className="size-2" icon={faClone} />{" "}
+              <span>Duplicate</span>
             </Menus.Button>
 
             <Menus.Button
-              className="btn-xs btn btn-outline hover:bg-gray-500"
               title="Edit"
               onClick={() => {
                 setShowEditForm((show) => !show);
               }}
             >
-              <FontAwesomeIcon className="size-2" icon={faPenToSquare} />
+              <FontAwesomeIcon className="size-2" icon={faPenToSquare} />{" "}
+              <span>Edit</span>
             </Menus.Button>
 
             <Menus.Button
-              className="btn-xs btn btn-outline hover:bg-gray-500"
               title="Delete"
               onClick={() => setIsConfirmDelete((show) => !show)}
             >
-              <FontAwesomeIcon className="size-2" icon={faTrashCan} />
+              <FontAwesomeIcon className="size-2" icon={faTrashCan} />{" "}
+              <span>Delete</span>
             </Menus.Button>
           </Menus.List>
         </Menus.Menu>
