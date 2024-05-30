@@ -1,4 +1,5 @@
 import CabinShowFormButton from "@/components/CabinsComponents/CabinShowFormButton";
+import CabinTableOperations from "@/components/CabinsComponents/CabinTableOperations";
 import CabinsContent from "@/components/CabinsComponents/CabinsContent";
 import Menus from "@/components/Menus";
 
@@ -9,9 +10,11 @@ function Page() {
         <h1 className="font-bold text-gray-600 text-sm sm:text-base md:text-lg lg:text-2xl">
           All cabins
         </h1>
-        <p className="font-medium text-sm sm:text-base md:text-lg lg:text-2xl">
-          Filter / Sort
-        </p>
+
+        <div className="font-medium text-sm sm:text-base md:text-lg lg:text-2xl">
+          <CabinTableOperations />
+        </div>
+
         <CabinShowFormButton />
       </div>
 
