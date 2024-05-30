@@ -5,7 +5,7 @@ import Menus from "@/components/Menus";
 function Page() {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="min-w-[310px] max-w-[900px] flex items-center justify-between">
         <h1 className="font-bold text-gray-600 text-sm sm:text-base md:text-lg lg:text-2xl">
           All cabins
         </h1>
@@ -19,7 +19,7 @@ function Page() {
         <div
           /*Cabins Table*/
           role="table"
-          className="border-2 border-solid border-gray-200 bg-white rounded-lg overflow-hidden"
+          className="min-w-[310px] max-w-[900px] border-2 border-solid border-gray-200 bg-white rounded-lg overflow-hidden"
         >
           <header
             role="row"
