@@ -7,11 +7,11 @@ function Page() {
   return (
     <>
       <div className="min-w-[310px] max-w-[900px] flex items-center justify-between">
-        <h1 className="font-bold text-gray-600 text-sm sm:text-base md:text-lg lg:text-2xl">
+        <h1 className="font-bold text-gray-600 text-sm sm:text-base md:text-lg lg:text-xl">
           All cabins
         </h1>
 
-        <div className="font-medium text-sm sm:text-base md:text-lg lg:text-2xl">
+        <div className="font-medium text-sm sm:text-base md:text-lg lg:text-xl">
           <CabinTableOperations />
         </div>
 
