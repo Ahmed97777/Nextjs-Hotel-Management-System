@@ -4,9 +4,13 @@ import React from "react";
 import FetchWarning from "../FetchWarning";
 import CabinRow from "./CabinRow";
 import { useGetCabins } from "./useGetCabins";
+import { useSearchParams } from "next/navigation";
 
 export default function CabinsContent() {
   const { cabinsData } = useGetCabins();
+  const searchParams = useSearchParams();
+  const discountFilter = searchParams.get("discount");
+  console.log(discountFilter);
 
   return (
     <>
