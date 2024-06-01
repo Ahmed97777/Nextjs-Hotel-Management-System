@@ -13,11 +13,19 @@ export default function Filter() {
 
   return (
     <div className="border border-gray-100 border-solid bg-white shadow-sm rounded-sm sm:p-1 flex gap-1 sm:gap-4">
-      <FilterButton onClick={() => handleClick("all")}>All</FilterButton>
-      <FilterButton onClick={() => handleClick("no-discount")}>
+      <FilterButton active="all" onClick={() => handleClick("all")}>
+        All
+      </FilterButton>
+      <FilterButton
+        active="no-discount"
+        onClick={() => handleClick("no-discount")}
+      >
         No-discount
       </FilterButton>
-      <FilterButton onClick={() => handleClick("with-discount")}>
+      <FilterButton
+        active="with-discount"
+        onClick={() => handleClick("with-discount")}
+      >
         With-discount
       </FilterButton>
     </div>
