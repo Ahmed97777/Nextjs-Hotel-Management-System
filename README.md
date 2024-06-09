@@ -6,7 +6,7 @@
 
 #### 2- Styling: Tailwind CSS and daisyUI-4 for Tailwind
 
-#### 3- Remote state management: Fetching data on the server with Server Components.
+#### 3- Remote state management: React Query
 
 #### 4- Form management: React Hook Form
 
