@@ -9,11 +9,10 @@ import { useSearchParams } from "next/navigation";
 export default function CabinsContent() {
   const { cabinsData } = useGetCabins();
   const searchParams = useSearchParams();
-  const discountFilter = searchParams.get("discount");
 
-  const filterDiscountValue = discountFilter || "all";
+  // 1) Filter:
+  const filterDiscountValue = searchParams.get("discount") || "all";
   console.log(filterDiscountValue);
-
   let filteredCabins;
   if (filterDiscountValue === "all") filteredCabins = cabinsData;
   if (filterDiscountValue === "no-discount")
@@ -21,10 +20,18 @@ export default function CabinsContent() {
   if (filterDiscountValue === "with-discount")
     filteredCabins = cabinsData?.filter((cabin) => cabin.discount > 0);
 
+  // 2) Sort after filter:
+  const sortByValue = searchParams.get("sortBy") || "name-asc";
+  const [field, direction] = sortByValue.split("-");
+  const modifier = direction === "asc" ? 1 : -1;
+  const sortedCabins = filteredCabins?.sort(
+    (a, b) => (a[field] - b[field]) * modifier
+  );
+
   return (
     <>
       {Array.isArray(cabinsData) ? (
-        filteredCabins.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)
+        sortedCabins.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)
       ) : cabinsData === "Cabins could not be loaded" ? (
         <div role="row">
           <FetchWarning message="Warning: there have been a problem with fetching cabins, please refresh the page." />

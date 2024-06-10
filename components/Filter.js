@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Filter({ filterField, options }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   function handleClick(value) {
     const params = new URLSearchParams(searchParams.toString());
@@ -11,7 +12,6 @@ export default function Filter({ filterField, options }) {
     router.push(`?${params.toString()}`);
   }
 
-  const searchParams = useSearchParams();
   const currentFilter = searchParams.get(filterField) || options?.[0].value;
 
   return (

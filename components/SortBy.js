@@ -12,7 +12,9 @@ function SortBy({ options }) {
     router.push(`?${params.toString()}`);
   }
 
-  return <Select options={options} onChange={handleChange} />;
+  const sortBy = searchParams.get("sortBy") || options?.[0].value;
+
+  return <Select options={options} value={sortBy} onChange={handleChange} />;
 }
 
 export default SortBy;
