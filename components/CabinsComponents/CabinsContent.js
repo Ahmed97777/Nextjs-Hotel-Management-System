@@ -7,8 +7,22 @@ import { useGetCabins } from "./useGetCabins";
 import { useSearchParams } from "next/navigation";
 
 export default function CabinsContent() {
-  const { cabinsData } = useGetCabins();
   const searchParams = useSearchParams();
+  const { cabinsData } = useGetCabins();
+  // const cabinsData = [];
+
+  if (Array.isArray(cabinsData) && cabinsData.length === 0) {
+    return (
+      <div className="flex justify-center items-center py-3" role="row">
+        No data to show at the moment
+      </div>
+    );
+  }
+
+  if (cabinsData === "Cabins could not be loaded")
+    return (
+      <FetchWarning message="Warning: there have been a problem with fetching cabins, please refresh the page." />
+    );
 
   // 1) Filter:
   const filterDiscountValue = searchParams.get("discount") || "all";
@@ -30,12 +44,8 @@ export default function CabinsContent() {
 
   return (
     <>
-      {Array.isArray(cabinsData) ? (
-        sortedCabins.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)
-      ) : cabinsData === "Cabins could not be loaded" ? (
-        <div role="row">
-          <FetchWarning message="Warning: there have been a problem with fetching cabins, please refresh the page." />
-        </div>
+      {Array.isArray(cabinsData) && cabinsData.length > 0 ? (
+        sortedCabins?.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)
       ) : (
         <div role="row" className="flex justify-center items-center">
           <span className="loading loading-spinner loading-lg text-success"></span>
