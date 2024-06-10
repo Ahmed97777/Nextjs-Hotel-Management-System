@@ -6,7 +6,7 @@ export default function Filter({ filterField, options }) {
   const router = useRouter();
 
   function handleClick(value) {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams.toString());
     params.set(filterField, value);
     router.push(`?${params.toString()}`);
   }

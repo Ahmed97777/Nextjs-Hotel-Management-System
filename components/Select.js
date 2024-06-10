@@ -1,8 +1,9 @@
 import React from "react";
 
-function Select({ options, value }) {
+function Select({ options, value, onChange }) {
   return (
     <select
+      onChange={onChange}
       value={value}
       className="text-xs sm:text-sm py-[0.8rem] px-[1.2rem] border border-solid border-gray-100 rounded-sm bg-white font-medium shadow-sm"
     >

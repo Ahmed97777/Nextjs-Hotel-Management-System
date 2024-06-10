@@ -6,14 +6,13 @@ import Menus from "@/components/Menus";
 function Page() {
   return (
     <>
-      <div className="min-w-[310px] max-w-[900px] flex flex-col gap-3">
-        <h1 className="font-bold justify-start text-gray-600 text-lg sm:text-xl md:text-2xl">
+      <div className="min-w-[310px] max-w-[900px]">
+        <h1 className="font-bold justify-start text-gray-600 text-lg sm:text-xl md:text-2xl mb-3">
           All cabins
         </h1>
 
-        <div className="flex items-center gap-3 justify-between">
+        <div className="flex items-center gap-3 justify-between flex-wrap">
           <CabinTableOperations />
-
           <CabinShowFormButton />
         </div>
       </div>
