@@ -12,6 +12,7 @@ import { useCreateCabin } from "./useCreateCabin";
 import ModalForm from "../ModalForm";
 import ConfirmDelete from "../ConfirmDelete";
 import Menus from "../Menus";
+import { formatCurrency } from "@/utils/helpers";
 
 export default function CabinRow({ cabin }) {
   const [showEditForm, setShowEditForm] = useState(false);
@@ -61,11 +62,11 @@ export default function CabinRow({ cabin }) {
         <div className="text-xs sm:text-base">{maxCapacity} guests</div>
 
         <div className="text-xs sm:text-base font-semibold">
-          ${regularPrice}
+          {formatCurrency(regularPrice)}
         </div>
 
         <div className="text-xs sm:text-base font-semibold text-green-700">
-          {discount ? `$${discount}` : <span>&mdash;</span>}
+          {discount ? formatCurrency(discount) : <span>&mdash;</span>}
         </div>
 
         <Menus.Menu>
