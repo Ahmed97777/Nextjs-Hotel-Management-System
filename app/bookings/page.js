@@ -1,4 +1,6 @@
 import BookingTable from "@/components/BookingComponents/BookingTable";
+import BookingShowFormButton from "@/components/BookingComponents/BookingShowFormButton";
+import BookingTableOperations from "@/components/BookingComponents/BookingTableOperations";
 import React from "react";
 
 function page() {
@@ -10,9 +12,8 @@ function page() {
         </h1>
 
         <div className="flex items-center gap-3 justify-between flex-wrap">
-          test
-          {/* <CabinTableOperations /> */}
-          {/* <CabinShowFormButton /> */}
+          <BookingTableOperations />
+          <BookingShowFormButton />
         </div>
       </div>
 
