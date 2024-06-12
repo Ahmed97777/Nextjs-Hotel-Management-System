@@ -24,16 +24,10 @@ function BookingRow({
 
   const statusType = statusToTagName[status];
 
-  const textColorClass = {
-    blue: "text-blue-700",
-    green: "text-green-700",
-    gray: "text-gray-700",
-  };
-
-  const bgColorClass = {
-    blue: "bg-blue-100",
-    green: "bg-green-100",
-    gray: "bg-gray-100",
+  const statusColorBadge = {
+    blue: `badge badge-info`,
+    green: `badge badge-success`,
+    gray: `badge badge-warning bg-gray-400`,
   };
 
   return (
@@ -66,7 +60,7 @@ function BookingRow({
       </div>
 
       <div
-        className={`capitalize text-center p-1 font-semibold rounded-full ${textColorClass[statusType]} ${bgColorClass[statusType]} `}
+        className={`capitalize font-semibold ${statusColorBadge[statusType]}`}
       >
         {status.replace("-", " ")}
       </div>
