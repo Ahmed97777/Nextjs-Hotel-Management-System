@@ -1,5 +1,7 @@
 import React from "react";
 import BookingsContent from "./BookingsContent";
+import TableFooter from "../TableFooter";
+import Pagination from "../Pagination";
 
 function BookingTable() {
   return (
@@ -21,6 +23,10 @@ function BookingTable() {
       </header>
 
       <BookingsContent />
+
+      <TableFooter>
+        <Pagination count={23} />
+      </TableFooter>
     </div>
   );
 }
