@@ -5,11 +5,15 @@ import FetchWarning from "../FetchWarning";
 import BookingRow from "./BookingRow";
 import { useGetBookings } from "./useGetBookings";
 import { useSearchParams } from "next/navigation";
+import TableFooter from "../TableFooter";
+import Pagination from "../Pagination";
+
+const PAGE_SIZE = 10;
 
 function BookingsContent() {
   const searchParams = useSearchParams();
   const { bookingsData } = useGetBookings();
-  // console.log("this is bookings data:", bookingsData);
+  const bookingsLength = bookingsData?.length || 1;
 
   if (Array.isArray(bookingsData) && bookingsData.length === 0) {
     return (
@@ -79,6 +83,12 @@ function BookingsContent() {
         <div role="row" className="flex justify-center items-center">
           <span className="loading loading-spinner loading-lg text-success"></span>
         </div>
+      )}
+
+      {Math.ceil(bookingsLength / PAGE_SIZE) <= 1 ? null : (
+        <TableFooter>
+          <Pagination count={bookingsLength} pageSize={PAGE_SIZE} />
+        </TableFooter>
       )}
     </>
   );

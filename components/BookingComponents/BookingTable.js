@@ -23,10 +23,6 @@ function BookingTable() {
       </header>
 
       <BookingsContent />
-
-      <TableFooter>
-        <Pagination count={37} pageSize={10} />
-      </TableFooter>
     </div>
   );
 }

@@ -34,8 +34,6 @@ function Pagination({ count, pageSize }) {
     router.push(`?${params.toString()}`);
   }
 
-  if (pageCount <= 1) return null;
-
   return (
     <div className="flex w-full items-center justify-between">
       <p>
