@@ -25,7 +25,7 @@ function BookingTable() {
       <BookingsContent />
 
       <TableFooter>
-        <Pagination count={23} />
+        <Pagination count={37} pageSize={10} />
       </TableFooter>
     </div>
   );

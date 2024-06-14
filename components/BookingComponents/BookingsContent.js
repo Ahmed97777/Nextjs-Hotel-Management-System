@@ -9,7 +9,7 @@ import { useSearchParams } from "next/navigation";
 function BookingsContent() {
   const searchParams = useSearchParams();
   const { bookingsData } = useGetBookings();
-  console.log("this is bookings data:", bookingsData);
+  // console.log("this is bookings data:", bookingsData);
 
   if (Array.isArray(bookingsData) && bookingsData.length === 0) {
     return (
