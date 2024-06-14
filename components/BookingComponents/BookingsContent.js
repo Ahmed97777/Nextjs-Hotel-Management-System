@@ -7,13 +7,13 @@ import { useGetBookings } from "./useGetBookings";
 import { useSearchParams } from "next/navigation";
 import TableFooter from "../TableFooter";
 import Pagination from "../Pagination";
-
-const PAGE_SIZE = 10;
+import { PAGE_SIZE } from "@/utils/constants";
 
 function BookingsContent() {
   const searchParams = useSearchParams();
-  const { bookingsData } = useGetBookings();
-  const bookingsLength = bookingsData?.length || 1;
+  const { bookingsData, count: bookingsCount } = useGetBookings();
+  console.log("bookingsCount = ", bookingsCount);
+  const bookingsLength = bookingsCount || 1;
 
   if (Array.isArray(bookingsData) && bookingsData.length === 0) {
     return (
