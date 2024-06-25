@@ -33,5 +33,3 @@ A stunning new hotel management system built with Next.js, featuring comprehensi
 - **React Query:** Remote state management
 - **React Hook Form:** Form management
 - **Supabase:** Database and APIs
-
-## Screenshots

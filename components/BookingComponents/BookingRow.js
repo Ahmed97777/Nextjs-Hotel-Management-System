@@ -1,6 +1,11 @@
-import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
-import { format, isToday } from "date-fns";
 import React from "react";
+import { useRouter } from "next/navigation";
+
+import Menus from "../Menus";
+import { format, isToday } from "date-fns";
+import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 function BookingRow({
   booking: {
@@ -16,6 +21,12 @@ function BookingRow({
     cabins: { name: cabinName },
   },
 }) {
+  const router = useRouter();
+
+  const navigateToDetails = (bookingId) => {
+    router.push(`/bookings/${bookingId}`);
+  };
+
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
@@ -60,7 +71,7 @@ function BookingRow({
       </div>
 
       <div
-        className={`capitalize font-semibold ${statusColorBadge[statusType]}`}
+        className={`capitalize font-semibold ${statusColorBadge[statusType]} w-28`}
       >
         {status.replace("-", " ")}
       </div>
@@ -68,6 +79,39 @@ function BookingRow({
       <div className="font-medium text-green-700">
         {formatCurrency(totalPrice)}
       </div>
+
+      <Menus.Menu>
+        <Menus.Toggle id={bookingId} />
+
+        <Menus.List id={bookingId}>
+          <Menus.Button
+            title="Details"
+            onClick={() => navigateToDetails(bookingId)}
+            // disabled={isDuplicating}
+          >
+            <FontAwesomeIcon className="size-2" icon={faEye} />
+            <span>Details</span>
+          </Menus.Button>
+
+          {/* <Menus.Button
+              title="Edit"
+              onClick={() => {
+                setShowEditForm((show) => !show);
+              }}
+            >
+              <FontAwesomeIcon className="size-2" icon={faPenToSquare} />{" "}
+              <span>Edit</span>
+            </Menus.Button>
+
+            <Menus.Button
+              title="Delete"
+              onClick={() => setIsConfirmDelete((show) => !show)}
+            >
+              <FontAwesomeIcon className="size-2" icon={faTrashCan} />{" "}
+              <span>Delete</span>
+            </Menus.Button> */}
+        </Menus.List>
+      </Menus.Menu>
     </div>
   );
 }
