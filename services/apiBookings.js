@@ -30,3 +30,24 @@ export async function getBookings({ page }) {
     return error.message;
   }
 }
+
+export async function getBooking(id) {
+  try {
+    const { data, error } = await supabase
+      .from("bookings")
+      .select("*, cabins(*), quests(*)")
+      .eq("id", id)
+      .single();
+
+    if (error) {
+      console.error("Booking data console.error:", error);
+      throw new Error("Booking data could not be loaded");
+    }
+
+    console.log("Booking data request succeeded");
+    return data;
+  } catch (error) {
+    console.log("Booking data error message:", error.message);
+    return error.message;
+  }
+}
