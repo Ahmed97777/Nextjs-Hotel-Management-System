@@ -3,6 +3,8 @@
 import React from "react";
 import FetchWarning from "../FetchWarning";
 import CabinRow from "./CabinRow";
+import Spinner from "../Spinner";
+
 import { useGetCabins } from "./useGetCabins";
 import { useSearchParams } from "next/navigation";
 
@@ -47,9 +49,7 @@ export default function CabinsContent() {
       {Array.isArray(cabinsData) && cabinsData.length > 0 ? (
         sortedCabins?.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)
       ) : (
-        <div role="row" className="flex justify-center items-center">
-          <span className="loading loading-spinner loading-lg text-success"></span>
-        </div>
+        <Spinner />
       )}
     </>
   );

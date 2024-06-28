@@ -3,10 +3,12 @@
 import React from "react";
 import FetchWarning from "../FetchWarning";
 import BookingRow from "./BookingRow";
-import { useGetBookings } from "./useGetBookings";
-import { useSearchParams } from "next/navigation";
 import TableFooter from "../TableFooter";
 import Pagination from "../Pagination";
+import Spinner from "../Spinner";
+
+import { useGetBookings } from "./useGetBookings";
+import { useSearchParams } from "next/navigation";
 import { PAGE_SIZE } from "@/utils/constants";
 
 function BookingsContent() {
@@ -80,9 +82,7 @@ function BookingsContent() {
           <BookingRow key={booking.id} booking={booking} />
         ))
       ) : (
-        <div role="row" className="flex justify-center items-center">
-          <span className="loading loading-spinner loading-lg text-success"></span>
-        </div>
+        <Spinner />
       )}
 
       {Math.ceil(bookingsLength / PAGE_SIZE) <= 1 ? null : (
