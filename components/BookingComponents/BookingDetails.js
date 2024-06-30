@@ -1,10 +1,11 @@
 import React from "react";
 import { useGetBooking } from "./useGetBooking";
 import Spinner from "../Spinner";
+import { format, isToday } from "date-fns";
+import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
 
 function BookingDetails() {
   const { bookingData = {}, isLoading } = useGetBooking();
-  console.log(bookingData);
 
   if (isLoading) return <Spinner />;
 
@@ -40,87 +41,106 @@ function BookingDetails() {
   // end status
 
   return (
-    <div className="p-4">
-      {status && (
-        <div
-          className={`capitalize btn-sm font-semibold ${statusColorBadge[statusType]} w-32 mb-4`}
-        >
-          {status.replace("-", " ")}
+    <>
+      <div>
+        <span className="font-medium text-gray-700 text-lg sm:text-xl mr-2">
+          Booking Status:
+        </span>
+        {status && (
+          <div
+            className={`capitalize btn-sm font-semibold ${statusColorBadge[statusType]} w-32 mb-4`}
+          >
+            {status.replace("-", " ")}
+          </div>
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 text-gray-600 text-base sm:text-lg">
+        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64">
+          <h3 className="text-green-700 font-bold text-center">
+            Guest Information
+          </h3>
+
+          <p>
+            <span className="font-semibold">Name:</span> {guestName}
+          </p>
+          <p>
+            <span className="font-semibold">Email:</span> {email}
+          </p>
+          <p>
+            <span className="font-semibold">Country:</span> {countryFlag}
+          </p>
+          <p>
+            <span className="font-semibold">National ID:</span> {nationalID}
+          </p>
         </div>
-      )}
 
-      <h2 className="text-2xl font-bold mb-4">Booking Details</h2>
+        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64">
+          <h3 className="text-green-700 font-bold text-center">
+            Cabin & Booking Dates
+          </h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <h3 className="text-xl font-semibold">Guest Information</h3>
           <p>
-            <strong>Name:</strong> {guestName}
+            <span className="font-semibold">Cabin Name:</span> {cabinName}
           </p>
           <p>
-            <strong>Email:</strong> {email}
+            <span className="font-semibold">Created At:</span>{" "}
+            {format(new Date(created_at), "EEE, MMM dd yyyy, p")}
           </p>
           <p>
-            <strong>Country Flag:</strong> {countryFlag}
+            <span className="font-semibold">Date:</span>{" "}
+            {format(new Date(startDate), "EEE, MMM dd yyyy")} (
+            {isToday(new Date(startDate))
+              ? "Today"
+              : formatDistanceFromNow(startDate)}
+            ) &mdash; {format(new Date(endDate), "EEE, MMM dd yyyy")}
           </p>
           <p>
-            <strong>National ID:</strong> {nationalID}
+            <span className="font-semibold">Number of Nights:</span> {numNights}
+          </p>
+        </div>
+
+        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64">
+          <h3 className="text-green-700 font-bold text-center">
+            Guest Details
+          </h3>
+
+          <p>
+            <span className="font-semibold">Number of Guests:</span> {numGuests}
+          </p>
+          <p>
+            <span className="font-semibold">Has Breakfast:</span>{" "}
+            {hasBreakfast ? "Yes" : "No"}
+          </p>
+          <p>
+            <span className="font-semibold">Observations:</span> {observations}
           </p>
         </div>
 
-        <div>
-          <h3 className="text-xl font-semibold">Cabin Information</h3>
+        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64">
+          <h3 className="text-green-700 font-bold text-center">
+            Payment Information
+          </h3>
+
           <p>
-            <strong>Cabin Name:</strong> {cabinName}
+            <span className="font-semibold">Cabin Price:</span>{" "}
+            {formatCurrency(cabinPrice)}
+          </p>
+          <p>
+            <span className="font-semibold">Extras Price:</span>{" "}
+            {formatCurrency(extrasPrice)}
+          </p>
+          <p>
+            <span className="font-semibold">Total Price:</span>{" "}
+            {formatCurrency(totalPrice)}
+          </p>
+          <p>
+            <span className="font-semibold">Is Paid:</span>{" "}
+            {isPaid ? "Paid" : "Will pay at property"}
           </p>
         </div>
       </div>
-
-      <div className="mt-4">
-        <h3 className="text-xl font-semibold">Booking Dates</h3>
-        <p>
-          <strong>Created At:</strong> {created_at}
-        </p>
-        <p>
-          <strong>Start Date:</strong> {startDate}
-        </p>
-        <p>
-          <strong>End Date:</strong> {endDate}
-        </p>
-        <p>
-          <strong>Number of Nights:</strong> {numNights}
-        </p>
-      </div>
-
-      <div className="mt-4">
-        <h3 className="text-xl font-semibold">Guest Details</h3>
-        <p>
-          <strong>Number of Guests:</strong> {numGuests}
-        </p>
-        <p>
-          <strong>Has Breakfast:</strong> {hasBreakfast ? "Yes" : "No"}
-        </p>
-        <p>
-          <strong>Observations:</strong> {observations}
-        </p>
-      </div>
-
-      <div className="mt-4">
-        <h3 className="text-xl font-semibold">Payment Information</h3>
-        <p>
-          <strong>Cabin Price:</strong> ${cabinPrice}
-        </p>
-        <p>
-          <strong>Extras Price:</strong> ${extrasPrice}
-        </p>
-        <p>
-          <strong>Total Price:</strong> ${totalPrice}
-        </p>
-        <p>
-          <strong>Is Paid:</strong> {isPaid ? "Yes" : "No"}
-        </p>
-      </div>
-    </div>
+    </>
   );
 }
 
