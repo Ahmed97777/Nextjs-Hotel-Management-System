@@ -56,7 +56,7 @@ function BookingDetails() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 text-gray-600 text-base sm:text-lg">
-        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64">
+        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64 transform transition-transform duration-300 hover:translate-y-3 hover:shadow-lg">
           <h3 className="text-green-700 font-bold text-center">
             Guest Information
           </h3>
@@ -75,7 +75,7 @@ function BookingDetails() {
           </p>
         </div>
 
-        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64">
+        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64 transform transition-transform duration-300 hover:translate-y-3 hover:shadow-lg">
           <h3 className="text-green-700 font-bold text-center">
             Cabin & Booking Dates
           </h3>
@@ -100,7 +100,7 @@ function BookingDetails() {
           </p>
         </div>
 
-        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64">
+        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64 transform transition-transform duration-300 hover:translate-y-3 hover:shadow-lg">
           <h3 className="text-green-700 font-bold text-center">
             Guest Details
           </h3>
@@ -117,7 +117,7 @@ function BookingDetails() {
           </p>
         </div>
 
-        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64">
+        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64 transform transition-transform duration-300 hover:translate-y-3 hover:shadow-lg">
           <h3 className="text-green-700 font-bold text-center">
             Payment Information
           </h3>
