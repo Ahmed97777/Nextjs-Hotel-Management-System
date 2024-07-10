@@ -36,7 +36,7 @@ function Sidebar() {
         </div>
 
         <h3
-          className="mb-10 text-green-800 font-extrabold text-base sm:text-xl text-center" /*Logo Name*/
+          className="mb-10 text-green-800 font-extrabold text-base md:text-xl text-center" /*Logo Name*/
         >
           Next Hotel
         </h3>

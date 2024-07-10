@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <main
-          className="h-screen grid grid-cols-[5rem,1fr] sm:grid-cols-[10rem,1fr] grid-rows-[auto,1fr] bg-gray-400" /*main: contains Header, Sidebar and Content*/
+          className="h-screen grid grid-cols-[5rem,1fr] md:grid-cols-[10rem,1fr] grid-rows-[auto,1fr] bg-gray-400" /*main: contains Header, Sidebar and Content*/
         >
           <Header />
           <Sidebar />

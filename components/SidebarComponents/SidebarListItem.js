@@ -20,7 +20,7 @@ function SidebarListItem({ linkTo, icon, name }) {
         <span className="sm:mr-2">
           <FontAwesomeIcon className="size-5" icon={icon} />
         </span>
-        <span className="hidden sm:block">{name}</span>
+        <span className="hidden md:block">{name}</span>
       </Link>
     </li>
   );
