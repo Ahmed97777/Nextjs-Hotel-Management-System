@@ -3,6 +3,7 @@ import { useGetBooking } from "./useGetBooking";
 import Spinner from "../Spinner";
 import { format, isToday } from "date-fns";
 import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
+import BookingDetailCard from "./BookingDetailCard";
 
 function BookingDetails() {
   const { bookingData = {}, isLoading } = useGetBooking();
@@ -56,11 +57,7 @@ function BookingDetails() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 text-gray-600 text-base sm:text-lg">
-        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64 transform transition-transform duration-300 hover:translate-y-3 hover:shadow-lg">
-          <h3 className="text-green-700 font-bold text-center">
-            Guest Information
-          </h3>
-
+        <BookingDetailCard cardName="Guest Information">
           <p>
             <span className="font-semibold">Name:</span> {guestName}
           </p>
@@ -73,13 +70,9 @@ function BookingDetails() {
           <p>
             <span className="font-semibold">National ID:</span> {nationalID}
           </p>
-        </div>
+        </BookingDetailCard>
 
-        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64 transform transition-transform duration-300 hover:translate-y-3 hover:shadow-lg">
-          <h3 className="text-green-700 font-bold text-center">
-            Cabin & Booking Dates
-          </h3>
-
+        <BookingDetailCard cardName="Cabin & Booking Dates">
           <p>
             <span className="font-semibold">Cabin Name:</span> {cabinName}
           </p>
@@ -98,13 +91,9 @@ function BookingDetails() {
           <p>
             <span className="font-semibold">Number of Nights:</span> {numNights}
           </p>
-        </div>
+        </BookingDetailCard>
 
-        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64 transform transition-transform duration-300 hover:translate-y-3 hover:shadow-lg">
-          <h3 className="text-green-700 font-bold text-center">
-            Guest Details
-          </h3>
-
+        <BookingDetailCard cardName="Guest Details">
           <p>
             <span className="font-semibold">Number of Guests:</span> {numGuests}
           </p>
@@ -115,13 +104,9 @@ function BookingDetails() {
           <p>
             <span className="font-semibold">Observations:</span> {observations}
           </p>
-        </div>
+        </BookingDetailCard>
 
-        <div className="bg-white p-4 shadow-md rounded flex flex-col gap-2 min-w-64 transform transition-transform duration-300 hover:translate-y-3 hover:shadow-lg">
-          <h3 className="text-green-700 font-bold text-center">
-            Payment Information
-          </h3>
-
+        <BookingDetailCard cardName="Payment Information">
           <p>
             <span className="font-semibold">Cabin Price:</span>{" "}
             {formatCurrency(cabinPrice)}
@@ -138,7 +123,7 @@ function BookingDetails() {
             <span className="font-semibold">Is Paid:</span>{" "}
             {isPaid ? "Paid" : "Will pay at property"}
           </p>
-        </div>
+        </BookingDetailCard>
       </div>
     </>
   );
