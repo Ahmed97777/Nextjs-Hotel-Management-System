@@ -90,7 +90,7 @@ function BookingRow({
             // disabled={isDuplicating}
           >
             <FontAwesomeIcon className="size-2" icon={faEye} />
-            <span>Details</span>
+            <span>See details</span>
           </Menus.Button>
 
           {/* <Menus.Button
