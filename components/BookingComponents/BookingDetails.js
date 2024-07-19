@@ -13,6 +13,7 @@ function BookingDetails() {
 
   const {
     created_at,
+    id: bookingId,
     startDate,
     endDate,
     numNights,
@@ -45,7 +46,7 @@ function BookingDetails() {
   return (
     <>
       {/* Status */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center">
         <div>
           <label className="font-medium text-gray-700 text-lg sm:text-xl mr-2">
             Status:
@@ -53,7 +54,7 @@ function BookingDetails() {
 
           {status && (
             <div
-              className={`capitalize btn-sm font-semibold ${statusColorBadge[statusType]} w-32 mb-4`}
+              className={`capitalize btn-xs lg:btn-sm font-semibold ${statusColorBadge[statusType]} w-32 mb-4`}
             >
               {status.replace("-", " ")}
             </div>
@@ -61,7 +62,7 @@ function BookingDetails() {
         </div>
 
         {/* if status is unconfirmed and the guest arrived, employer can check in the guest. */}
-        {status === "unconfirmed" && <CheckIn />}
+        {status === "unconfirmed" && <CheckIn bookingId={bookingId} />}
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 text-gray-600 text-base sm:text-lg">
@@ -89,7 +90,7 @@ function BookingDetails() {
           </p>
 
           <p>
-            <span className="font-semibold">Booked:</span>{" "}
+            <span className="font-semibold">Booking Date:</span>{" "}
             {format(new Date(created_at), "EEE, MMM dd yyyy, p")}
           </p>
 
@@ -104,18 +105,18 @@ function BookingDetails() {
           </p>
 
           <p>
-            <span className="font-semibold">Nights to spend:</span> {numNights}
+            <span className="font-semibold">Total Nights:</span> {numNights}
           </p>
         </BookingDetailCard>
 
         <BookingDetailCard cardName="Guest Details">
           <p>
-            <span className="font-semibold">Guest plus:</span>{" "}
+            <span className="font-semibold">Guest Plus:</span>{" "}
             {numGuests > 1 ? `+${numGuests - 1} guests` : ""}
           </p>
 
           <p>
-            <span className="font-semibold">Has Breakfast:</span>{" "}
+            <span className="font-semibold">Include Breakfast:</span>{" "}
             {hasBreakfast ? "Yes" : "No"}
           </p>
 
@@ -137,7 +138,7 @@ function BookingDetails() {
           </span>
 
           <p>
-            <span className="font-semibold">Is Paid:</span>{" "}
+            <span className="font-semibold">Payment Status:</span>{" "}
             {isPaid ? (
               <span className="badge badge-success">Paid</span>
             ) : (
