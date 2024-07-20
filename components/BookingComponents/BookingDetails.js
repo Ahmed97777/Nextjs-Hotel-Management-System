@@ -61,8 +61,10 @@ function BookingDetails() {
           )}
         </div>
 
-        {/* if status is unconfirmed and the guest arrived, employer can check in the guest. */}
-        {status === "unconfirmed" && <CheckIn bookingId={bookingId} />}
+        {/* if status is unconfirmed, booking is Paid, and the guest arrived, employer can check in the guest. */}
+        {status === "unconfirmed" && (
+          <CheckIn bookingId={bookingId} isPaid={isPaid} />
+        )}
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 text-gray-600 text-base sm:text-lg">
