@@ -64,7 +64,7 @@ export default function ConfirmCheckIn({
         <button
           className="btn btn-xs sm:btn-sm btn-success hover:bg-green-700 hover:text-white"
           onClick={onConfirm}
-          disabled={paidStatus}
+          disabled={paidStatus || disabled}
         >
           Check in
         </button>

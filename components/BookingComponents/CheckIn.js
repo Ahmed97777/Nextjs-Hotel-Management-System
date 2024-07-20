@@ -3,9 +3,17 @@
 import React, { useState } from "react";
 import ModalForm from "../ModalForm";
 import ConfirmCheckIn from "../ConfirmCheckIn";
+import { useChecking } from "./useCheckin";
 
 function CheckIn({ bookingInfo }) {
   const [isConfirmCheckIn, setIsConfirmCheckIn] = useState(false);
+
+  const { checkin, isCheckingIn } = useChecking();
+
+  function handleCheckin() {
+    checkin(bookingInfo.bookingId);
+    setIsConfirmCheckIn(false);
+  }
 
   return (
     <>
@@ -28,8 +36,8 @@ function CheckIn({ bookingInfo }) {
           <ConfirmCheckIn
             resourceInfo={bookingInfo}
             onCloseModal={() => setIsConfirmCheckIn(false)}
-            // onConfirm={() => deleteCabin(cabin.id)}
-            // disabled={isDeleting}
+            onConfirm={handleCheckin}
+            disabled={isCheckingIn}
           />
         </ModalForm>
       )}

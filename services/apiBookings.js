@@ -51,3 +51,25 @@ export async function getBooking(id) {
     return error.message;
   }
 }
+
+export async function updateBooking(id, obj) {
+  try {
+    const { data, error } = await supabase
+      .from("bookings")
+      .update(obj)
+      .eq("id", id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error("Update booking data console.error:", error);
+      throw new Error("Update booking data could not be loaded");
+    }
+
+    console.log("Update booking data request succeeded");
+    return data;
+  } catch (error) {
+    console.log("Update booking data error message:", error.message);
+    return error.message;
+  }
+}
