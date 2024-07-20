@@ -10,7 +10,7 @@ export function useGetBooking() {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["bookings"],
+    queryKey: ["bookings", bookingID],
     queryFn: () => getBooking(bookingID),
   });
 
