@@ -63,7 +63,7 @@ function BookingDetails() {
 
         {/* if status is unconfirmed, booking is Paid, and the guest arrived, employer can check in the guest. */}
         {status === "unconfirmed" && (
-          <CheckIn bookingId={bookingId} isPaid={isPaid} />
+          <CheckIn bookingInfo={{ bookingId, isPaid, guestName, totalPrice }} />
         )}
       </div>
 

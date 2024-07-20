@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 
 export default function ConfirmCheckIn({
-  resourceName,
-  isPaid,
+  resourceInfo,
   onCloseModal,
   onConfirm,
   disabled,
 }) {
-  const [paidStatus, setPaidStatus] = useState(!isPaid);
+  const [paidStatus, setPaidStatus] = useState(!resourceInfo.isPaid);
 
   const handleCheckboxChange = () => {
     console.log("jdsjsjsj");
@@ -18,10 +17,12 @@ export default function ConfirmCheckIn({
     <div className="min-w-80 flex flex-col gap-5">
       <h3 className="text-gray-800 text-sm sm:text-base font-bold">
         Check in booking #
-        <span className="text-green-600 font-medium">{resourceName}</span>
+        <span className="text-green-600 font-medium">
+          {resourceInfo.bookingId}
+        </span>
       </h3>
 
-      {!isPaid && (
+      {!resourceInfo.isPaid && (
         <div className="flex items-center text-gray-500 text-sm sm:text-base">
           <input
             type="checkbox"
@@ -31,17 +32,24 @@ export default function ConfirmCheckIn({
             onChange={handleCheckboxChange}
           />
           <label htmlFor="confirmPayment">
-            Confirm payment for booking #
-            <span className="text-green-600 font-medium">{resourceName}</span>{" "}
-            first.
+            Confirm that{" "}
+            <span className="text-green-600 font-medium">
+              {resourceInfo.guestName}
+            </span>{" "}
+            has paid the total amount of{" "}
+            <span className="text-green-600 font-medium">
+              ${resourceInfo.totalPrice}
+            </span>
           </label>
         </div>
       )}
 
       <p className="text-gray-500 mb-5 text-sm sm:text-base">
         Are you sure you want to Check in booking #
-        <span className="text-green-600 font-medium">{resourceName}</span> ?
-        This action cannot be undone.
+        <span className="text-green-600 font-medium">
+          {resourceInfo.bookingId}
+        </span>{" "}
+        ? This action cannot be undone.
       </p>
 
       <div className="flex justify-end gap-5">

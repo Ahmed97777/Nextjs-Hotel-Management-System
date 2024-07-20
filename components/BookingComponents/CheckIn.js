@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import ModalForm from "../ModalForm";
 import ConfirmCheckIn from "../ConfirmCheckIn";
 
-function CheckIn({ bookingId, isPaid }) {
+function CheckIn({ bookingInfo }) {
   const [isConfirmCheckIn, setIsConfirmCheckIn] = useState(false);
 
   return (
@@ -19,15 +19,14 @@ function CheckIn({ bookingId, isPaid }) {
           title="Check In"
           onClick={() => setIsConfirmCheckIn((show) => !show)}
         >
-          Check in booking #{bookingId}
+          Check in booking #{bookingInfo.bookingId}
         </button>
       </div>
 
       {isConfirmCheckIn && (
         <ModalForm onClose={() => setIsConfirmCheckIn(false)}>
           <ConfirmCheckIn
-            resourceName={bookingId}
-            isPaid={isPaid}
+            resourceInfo={bookingInfo}
             onCloseModal={() => setIsConfirmCheckIn(false)}
             // onConfirm={() => deleteCabin(cabin.id)}
             // disabled={isDeleting}
