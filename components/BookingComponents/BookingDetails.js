@@ -1,10 +1,13 @@
 import React from "react";
+
 import { useGetBooking } from "./useGetBooking";
 import Spinner from "../Spinner";
-import { format, isToday } from "date-fns";
-import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
 import BookingDetailCard from "./BookingDetailCard";
 import CheckIn from "./CheckIn";
+import CheckOut from "./CheckOut";
+
+import { format, isToday } from "date-fns";
+import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
 
 function BookingDetails() {
   const { bookingData = {}, isLoading } = useGetBooking();
@@ -65,6 +68,9 @@ function BookingDetails() {
         {status === "unconfirmed" && (
           <CheckIn bookingInfo={{ bookingId, isPaid, guestName, totalPrice }} />
         )}
+
+        {/* if status is checked in, and the guest are leaving, employer can check out the guest. */}
+        {status === "checked-in" && <CheckOut bookingId={bookingId} />}
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 text-gray-600 text-base sm:text-lg">
