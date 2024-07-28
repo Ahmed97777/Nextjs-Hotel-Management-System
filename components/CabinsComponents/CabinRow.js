@@ -106,7 +106,7 @@ export default function CabinRow({ cabin }) {
       {isConfirmDelete && (
         <ModalForm onClose={() => setIsConfirmDelete(false)}>
           <ConfirmDelete
-            resourceName={name}
+            resourceName={{ cabin: "cabin", name: name }}
             onCloseModal={() => setIsConfirmDelete(false)}
             onConfirm={() => deleteCabin(cabin.id)}
             disabled={isDeleting}

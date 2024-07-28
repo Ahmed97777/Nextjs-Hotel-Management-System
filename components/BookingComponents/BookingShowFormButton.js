@@ -9,7 +9,7 @@ export default function CabinShowFormButton() {
   return (
     <>
       <button
-        className="btn btn-success btn-xs lg:btn-sm hover:bg-green-700 hover:text-gray-200"
+        className="btn btn-success btn-xs lg:btn-sm hidden hover:bg-green-700 hover:text-gray-200"
         onClick={() => setIsOpenModal((show) => !show)}
       >
         Add new Booking

@@ -8,6 +8,7 @@ import CheckOut from "./CheckOut";
 
 import { format, isToday } from "date-fns";
 import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
+import DeleteBooking from "./DeleteBooking";
 
 function BookingDetails() {
   const { bookingData = {}, isLoading } = useGetBooking();
@@ -154,6 +155,11 @@ function BookingDetails() {
             )}
           </p>
         </BookingDetailCard>
+      </div>
+
+      <div className="flex justify-end">
+        {/* if status is unconfirmed, employer can delete the booking. */}
+        {status === "unconfirmed" && <DeleteBooking bookingId={bookingId} />}
       </div>
     </>
   );
