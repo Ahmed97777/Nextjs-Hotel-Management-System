@@ -16,7 +16,7 @@ function DeleteBooking({ bookingId }) {
   function handleDelete() {
     deleteBooking(bookingId);
     setIsConfirmDelete(false);
-    router.push("/bookings");
+    router.replace("/bookings");
   }
 
   return (
